@@ -1,0 +1,94 @@
+package com.jsplec.bbs.dto;
+
+public class PageBlockDto {
+	private int curPage = 1; //현재페이지
+	private int numberOfBlock = 10; //출력할 페이지 블록 수
+	private int numberOfBlocks = 0; //총 페이지 블록 수
+	private int numberPerPage = 15; //출력할 게시글 수
+	private int start = 1; //시작 페이지 블록 값
+	private int end = start + numberOfBlock; //끝 페이지 블록 값
+	public boolean prev, next; //이전, 다음버튼
+	
+	public PageBlockDto() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public PageBlockDto(int curPage, int numberOfBlock, int numberOfBlocks, int numberPerPage, int start, int end,
+			boolean prev, boolean next) {
+		super();
+		this.curPage = curPage;
+		this.numberOfBlock = numberOfBlock;
+		this.numberOfBlocks = numberOfBlocks;
+		this.numberPerPage = numberPerPage;
+		this.start = start;
+		this.end = end;
+		this.prev = prev;
+		this.next = next;
+	}
+
+	public int getCurPage() {
+		return curPage;
+	}
+
+	public void setCurPage(int curPage) {
+		this.curPage = curPage;
+	}
+
+	public int getNumberOfBlock() {
+		return numberOfBlock;
+	}
+
+	public void setNumberOfBlock(int numberOfBlock) {
+		this.numberOfBlock = numberOfBlock;
+	}
+
+	public int getNumberOfBlocks() {
+		return numberOfBlocks;
+	}
+
+	public void setNumberOfBlocks(int numberOfBlocks) {
+		this.numberOfBlocks = numberOfBlocks;
+	}
+
+	public int getNumberPerPage() {
+		return numberPerPage;
+	}
+
+	public void setNumberPerPage(int numberPerPage) {
+		this.numberPerPage = numberPerPage;
+	}
+
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
+	}
+
+	public int getEnd() {
+		return end;
+	}
+
+	public void setEnd(int end) {
+		this.end = end;
+	}
+
+	public boolean isPrev() {
+		return prev;
+	}
+
+	public void setPrev(boolean prev) {
+		this.prev = prev;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}	
+	
+	
+}

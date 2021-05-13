@@ -1,0 +1,18 @@
+package com.jsplec.bbs.dao;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+public class PageBlockDao {
+DataSource dataSource;
+	
+	public PageBlockDao() {
+		try {
+			Context context = new InitialContext();
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mvc");
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
