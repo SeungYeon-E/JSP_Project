@@ -16,28 +16,40 @@ import com.jsplec.bbs.dto.BDto;
 
 public class BDao {
 	DataSource dataSource;
+	DataSource dataSource1;
 	
 	public BDao() {
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mvc");
+			
+			Context context1 = new InitialContext();
+			dataSource1 = (DataSource) context1.lookup("java:comp/env/jdbc/jsp_project");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	}
 	
+	//사용자가 요청한 페이지(offset)와 페이지당 표시할 게시글의 수(limit)을 매개변수로 받는다.
 	public ArrayList<BDto> list(int start, int pageCnt){
 		ArrayList<BDto> dtos = new ArrayList<BDto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
-		
+		// LIMIT {OFFSET}, {LIMIT} -> 쿼리결과중 offset번째부터 limit개의 튜플을 출력  
+		String query = "SELECT * FROM mvc_board ORDER BY bId DESC LIMIT ?, ?";
+		//page는 1부터 시작하지만, offset은 0부터 시작.(0~9(10개), 10~19(10개)와같이 offset을 설정해야 하기 때문)
+		int offset = start - 1;
+				
 		try {
 			connection = dataSource.getConnection();
-			
-			String query = "select * from mvc_board limit ?, ?";
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, start);
+			// 0을 나누면 에러가 발생하므로 예외처
+			if (offset  == 0) {
+				preparedStatement.setInt(1, offset);
+			} else {
+				preparedStatement.setInt(1, offset*pageCnt);
+			}
 			preparedStatement.setInt(2, pageCnt);
 			resultset = preparedStatement.executeQuery();
 			
@@ -50,10 +62,12 @@ public class BDao {
 				
 				BDto dto = new BDto(bId, bName, bTitle, bContent, bDate);
 				dtos.add(dto);
+				System.out.println("list-data load success");
 				
 			}
 			
 		}catch(Exception e) {
+			System.out.println("list-data load fail");
 			e.printStackTrace();
 		}finally {
 			try {
@@ -61,8 +75,10 @@ public class BDao {
 				if(resultset != null) resultset.close();
 				if(preparedStatement != null) preparedStatement.close();
 				if(connection != null) connection.close();
+				System.out.println("< rs, psmt, conn close success>");
 			}catch(Exception e){
 				e.printStackTrace();
+				System.out.println("< rs, psmt, conn close Fail>");
 				
 			}
 		}
@@ -106,21 +122,35 @@ public class BDao {
 		ResultSet resultset = null;
 		
 		try {
-			connection = dataSource.getConnection();
+			System.out.println(dataSource1);
+			connection = dataSource1.getConnection();
 			
-			String query = "select * from mvc_board where bId = ?";
+			String query = "select * from\n"
+						+ "post p, pwrite w\n"
+						+ "where p.pNo = w.post_pNo\n"
+						+ "and p.pNo = "+ strID+"\n"
+						+ ";";
+
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, Integer.parseInt(strID));
+//			preparedStatement.setInt(1, Integer.parseInt(strID));
 			resultset = preparedStatement.executeQuery();
-			
+
+			System.out.println(resultset);
 			if(resultset.next()) {
-				int bId = resultset.getInt("bId");
-				String bName = resultset.getString("bName");
-				String bTitle = resultset.getString("bTitle");
-				String bContent = resultset.getString("bContent");
-				Timestamp bDate = resultset.getTimestamp("bDate");
+				int pNo = resultset.getInt("pNo");
+				String userEmail = resultset.getString("user_email");
+				String pTitle = resultset.getString("pTitle");
+				String pContent = resultset.getString("pContent");
+				String pImg = resultset.getString("pImg");
+				//굳이 이미지 가져ㅗㅇㄹ 피료가 옶오
+				String pCategory = resultset.getString("pCategory");
+				int pHits = resultset.getInt("pHits");
+				int pLike = resultset.getInt("pLike");
+				Timestamp wRegistDate = resultset.getTimestamp("wRegistDate");
 				
-				dto = new BDto(bId, bName, bTitle, bContent, bDate);
+				pContent = content(pContent, pImg);
+				System.out.println(pContent);
+				dto = new BDto(pNo, userEmail, pTitle, pContent, pImg, pCategory, pHits, pLike, wRegistDate);
 				
 			}
 			
@@ -138,6 +168,19 @@ public class BDao {
 			}
 		}
 		return dto;
+	}
+	
+	public String content(String content, String img) {
+		
+		String[] arr_img = img.split(",");
+//		오늘 소개할 물건은\n<img_id=macBook.png>\n<img_id=macBook2.png>\n입니다.
+//		오늘 소개할 물건은\n<img_src=\"http://localhost:8080/DeveloperWeb/img/macBook.png>\n<img_id=macBook2.png\">\n입니다.
+		content = content.replaceAll("img_id=", "img src=\"http://localhost:8080/DeveloperWeb/img/");
+		content = content.replaceAll("png", "png\"");
+		content = content.replaceAll("jpg", "jpg\"");
+		
+		
+		return content;
 	}
 	
 	
@@ -196,7 +239,7 @@ public class BDao {
 			}
 		}
 	}
-	
+	//list에서 사용하는 릴레이션이 가진 튜플의 총 갯수를 리턴한다.
 	public int selectcnt(){
 		int count=0;
 		
@@ -213,9 +256,11 @@ public class BDao {
 			
 			if(resultset.next()) {
 				count = resultset.getInt(1);
+				System.out.println("list-count success");
 			}
 			
 		}catch(Exception e) {
+			System.out.println("list-count fail");
 			e.printStackTrace();
 		}finally {
 			try {
@@ -223,8 +268,10 @@ public class BDao {
 				if(resultset != null) resultset.close();
 				if(preparedStatement != null) preparedStatement.close();
 				if(connection != null) connection.close();
+				System.out.println("< rs, psmt, conn close success>");
 			}catch(Exception e){
 				e.printStackTrace();
+				System.out.println("< rs, psmt, conn close Fail>");
 				
 			}
 		}

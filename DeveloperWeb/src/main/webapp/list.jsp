@@ -11,10 +11,7 @@
 <title>MVC 게시판</title>
 </head>
 <body>
-<%
-	ArrayList<BDto> dtos = null;
-	int count = 0;
-%>
+
 	<h3>MVC 게시판</h3>
 	<table border="1">
 		<tr>
@@ -24,34 +21,23 @@
 			<th>날짜</th>
 		</tr>
 		<c:forEach items="${list}" var="dto"><!-- 리스트커멘드에서 정해줌 아이템즈는  -->
-		<%
-			for(int i=0;i<dtos.size();i++) {
-		 
-		%>
 		<tr>
 			<td>${dto.bId }</td>
 			<td>${dto.bName }</td>
 			<td><a href="content_view.do?bId=${dto.bId}">${dto.bTitle }</a></td>
 			<td>${dto.bDate }</td>
 		</tr>
-		<% } %>
 		</c:forEach>
+		<tr>
+			<td colspan="4" align="center">
+				<c:forEach items="${pageList }" var="page">
+					<a href="list.do?page=${page }">${page }</a>
+				</c:forEach>
+			</td>
 		<tr>
 			<td colspan="4"><a href="write_view.do">글작성</a></td>
 		</tr>
 		
 	</table>
-	<nav>
-		<%
-			for(int i=1;i<=count;i++){
-		%>
-		
-			<a href="ContentList.jsp?page<%=i %>">[<%=i%>]</a>
-		<%
-			};
-		%>
-	
-	
-	</nav>
 </body>
 </html>

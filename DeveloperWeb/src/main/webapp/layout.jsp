@@ -6,23 +6,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-	<table width="400" border="1" cellpadding="0" cellspacing="0">
-        <tr>
-            <td>
-                <jsp:include page="top.jsp" flush="false"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <jsp:include page="content.jsp" flush="false"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <jsp:include page="bottom.jsp" flush="false"/>
-            </td>
-        </tr>
-    </table>
+<body style="height:1280px;">
+    <div style="height:10%; width:100%; display: inline-flex;">
+       <div style="float:left; width:30%"></div>
+       <div style="float:left; width:40%"><h1>마음만은 TOP 개발자</h1></div>
+       <div style="float:left; width:30%"></div>
+    </div>
+    <div style="height:10%">
+       menu
+    </div>
+    <div class="content" style="height:70%; width:100%; display: inline-flex;">
+    <div style="float:left; width:30%"></div>
+       <div style="float:left; width:40%"><jsp:include page="./content_view.jsp"></jsp:include></div>
+       <div style="float:left; width:30%"></div>
+    </div>
+    <div style="height:10%">
+       bottom
+    </div>
 </body>
 </html>
