@@ -10,7 +10,6 @@ public class BDto {
 	String bContent;
 	Timestamp bDate;
 	
-	
 	int pNo;
 	String userEmail;
 	String pTitle;
@@ -20,6 +19,34 @@ public class BDto {
 	int pHits;
 	int pLike;
 	Timestamp wRegistDate;
+	
+	String cContent;
+	Timestamp cRegisDate;
+	
+	
+	public BDto(String userEmail, String cContent, Timestamp cRegisDate) {
+		super();
+		this.userEmail = userEmail;
+		this.cContent = cContent;
+		this.cRegisDate = cRegisDate;
+	}
+
+	public String getcContent() {
+		return cContent;
+	}
+
+	public void setcContent(String cContent) {
+		this.cContent = cContent;
+	}
+
+	public Timestamp getcRegisDate() {
+		return cRegisDate;
+	}
+
+	public void setcRegisDate(Timestamp cRegisDate) {
+		this.cRegisDate = cRegisDate;
+	}
+
 	
 	
 	public String getUserEmail() {

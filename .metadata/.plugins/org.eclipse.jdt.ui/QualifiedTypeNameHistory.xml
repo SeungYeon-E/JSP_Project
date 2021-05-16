@@ -5,4 +5,5 @@
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="com.jsplec.bbs.dto.PageBlockDto"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="com.jsplec.bbs.command.BCommantCommand"/>
 </qualifiedTypeNameHistroy>

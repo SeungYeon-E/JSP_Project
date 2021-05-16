@@ -6,7 +6,10 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
+		<item key="selection" value="Sys"/>
 		<list key="findhistory">
+			<item value="Sys"/>
+			<item value="sys"/>
 			<item value="content"/>
 			<item value="dataSource"/>
 		</list>

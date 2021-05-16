@@ -1,0 +1,9 @@
+@charset "EUC-KR";
+
+h1{
+	text-align: center;
+}
+div {
+	text-align: center;
+	
+}

@@ -23,8 +23,6 @@ public class BModifyCommand implements BCommand {
 		BDto dto = dao.contentView(bId);
 		request.setAttribute("content_view", dto);
 		
-		
-		
 
 	}
 

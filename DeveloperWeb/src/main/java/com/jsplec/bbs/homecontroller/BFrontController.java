@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jsplec.bbs.command.BCommand;
+import com.jsplec.bbs.command.BCommantCommand;
 import com.jsplec.bbs.command.BContentCommand;
 import com.jsplec.bbs.command.BDeleteCommand;
 import com.jsplec.bbs.command.BListCommand;
@@ -97,6 +98,16 @@ public class BFrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "content_view.jsp";
 			break;	
+//		case("/comment.do"):
+//			command = new BCommantCommand();
+//			command.execute(request, response);
+//			viewPage = "content_view.jsp";
+//			break;	
+//		case("/commentdelete.do"):
+//			command = new BModifyCommand();
+//			command.execute(request, response);
+//			viewPage = "content_view.jsp";
+//		break;	
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
