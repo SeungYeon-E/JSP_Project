@@ -1,0 +1,26 @@
+@charset "EUC-KR";
+
+h1{
+	text-align: center;
+}
+div {
+	text-align: center;
+	align-items: center;
+	
+}
+.layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  background: #f00;
+  margin: -50px 0 0 -50px;
+}
+
+ .footer_info{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     flex-direction: column;
+ }

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jsplec.bbs.command.BCommand;
-import com.jsplec.bbs.command.BCommantCommand;
+import com.jsplec.bbs.command.BWriteCommantCommand;
 import com.jsplec.bbs.command.BContentCommand;
 import com.jsplec.bbs.command.BDeleteCommand;
 import com.jsplec.bbs.command.BListCommand;

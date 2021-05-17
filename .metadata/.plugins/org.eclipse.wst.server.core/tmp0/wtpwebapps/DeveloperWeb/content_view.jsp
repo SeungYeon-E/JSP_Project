@@ -59,15 +59,14 @@
 		</div> --%>
 	</form>
 	<!-- 댓글입력 -->
-	<form action="modify.do" method="post">
+	<form action="comment.do" method="post">
 		<div>
 			<h4>댓글달기</h4>
 		</div>
 		<div>
 			<input type="text" name="bName" size="20" value="${content_view.userEmail}">
+			<input type="text" name="ccomment" size="20">
 			<input type="submit" value="확인">
-		</div>
-		<div>
 		</div>
 		<%-- <div>
 			<input type="submit" value="수정">&nbsp;&nbsp;&nbsp;<a href="list.do">목록보기</a>

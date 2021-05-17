@@ -4,6 +4,11 @@
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="com.jsplec.bbs.dto.PageBlockDto"/>
-    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="com.jsplec.bbs.command.BCommantCommand"/>
+    <fullyQualifiedTypeName name="java.com.jspproject.bbs.command.ContentItemCommand"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="java.com.jspproject.bbs.contentItemdto.ContentItemdao"/>
+    <fullyQualifiedTypeName name="java.com.jspproject.bbs.contentItemdao.ContentItemdto"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.dao.ContentItemdao"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.dto.ContentItemdto"/>
 </qualifiedTypeNameHistroy>

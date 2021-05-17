@@ -240,6 +240,7 @@ public class BDao {
 			}
 		}
 	}
+	
 	//list에서 사용하는 릴레이션이 가진 튜플의 총 갯수를 리턴한다.
 	public int selectcnt(){
 		int count=0;
@@ -279,6 +280,7 @@ public class BDao {
 		return count;
 	}
 	
+	
 	//게시물 리뷰 작성
 	public void commentwrite(String bId, String userid, String cContent) {
 		Connection connection = null;
@@ -309,6 +311,7 @@ public class BDao {
 			}
 		}
 	}
+	
 	public ArrayList<BDto> commentSelect(String bId) {
 		ArrayList<BDto> dtos = new ArrayList<BDto>();
 		Connection connection = null;
