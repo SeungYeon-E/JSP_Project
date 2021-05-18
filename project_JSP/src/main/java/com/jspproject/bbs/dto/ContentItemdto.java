@@ -3,58 +3,48 @@ package com.jspproject.bbs.dto;
 import java.sql.Timestamp;
 
 public class ContentItemdto {
-	int bId;
-	String bName;
-	String bTitle;
-	String bContent;
-	Timestamp bDate;
-	
-	int pNo;
+	int iNo;
 	String userEmail;
-	String pTitle;
-	String pContent;
-	String pImg;
-	String pCategory;
-	int pHits;
-	int pLike;
+	String iTitle;
+	String iContent;
+	String iCategory;
+	int iHits;
 	Timestamp wRegistDate;
 	
 	String cContent;
-	Timestamp cRegisDate;
+	Timestamp cRegistDate;
 	
+	
+	// 굳이 이미지 가져올 필요가 없어
+	String iImg;
+	// int pLike = resultset.getInt("pLike");// Like수없나요?
+	
+	
+	
+	public ContentItemdto(int iNo, String userEmail, String iTitle, String iContent, String iImg, String iCategory,
+		int iHits, Timestamp wRegistDate) {
+	super();
+	this.iNo = iNo;
+	this.userEmail = userEmail;
+	this.iTitle = iTitle;
+	this.iContent = iContent;
+	this.iImg = iImg;
+	this.iCategory = iCategory;
+	this.iHits = iHits;
+	this.wRegistDate = wRegistDate;
+}
+
+	public ContentItemdto(String userEmail, String cContent, Timestamp cRegistDate) {
+		super();
+		this.userEmail = userEmail;
+		this.cContent = cContent;
+		this.cRegistDate = cRegistDate;
+	}
+
 	public ContentItemdto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ContentItemdto(int bId, String bName, String bTitle, String bContent, Timestamp bDate) {
-		super();
-		this.bId = bId;
-		this.bName = bName;
-		this.bTitle = bTitle;
-		this.bContent = bContent;
-		this.bDate = bDate;
-	}
-	
-	public ContentItemdto(String userEmail, String cContent, Timestamp cRegisDate) {
-		super();
-		this.userEmail = userEmail;
-		this.cContent = cContent;
-		this.cRegisDate = cRegisDate;
-	}
-	
-	public ContentItemdto(int pNo, String userEmail, String pTitle, String pContent, String pImg, String pCategory, int pHits, int pLike,
-			Timestamp wRegistDate) {
-		super();
-		this.pNo = pNo;
-		this.userEmail = userEmail;
-		this.pTitle = pTitle;
-		this.pContent = pContent;
-		this.pImg = pImg;
-		this.pCategory = pCategory;
-		this.pHits = pHits;
-		this.pLike = pLike;
-		this.wRegistDate = wRegistDate;
-	}
 
 	public String getcContent() {
 		return cContent;
@@ -64,16 +54,22 @@ public class ContentItemdto {
 		this.cContent = cContent;
 	}
 
-	public Timestamp getcRegisDate() {
-		return cRegisDate;
+	public Timestamp getcRegistDate() {
+		return cRegistDate;
 	}
 
-	public void setcRegisDate(Timestamp cRegisDate) {
-		this.cRegisDate = cRegisDate;
+	public void setcRegistDate(Timestamp cRegistDate) {
+		this.cRegistDate = cRegistDate;
 	}
 
-	
-	
+	public int getiNo() {
+		return iNo;
+	}
+
+	public void setiNo(int iNo) {
+		this.iNo = iNo;
+	}
+
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -82,61 +78,44 @@ public class ContentItemdto {
 		this.userEmail = userEmail;
 	}
 
-
-	public int getpNo() {
-		return pNo;
+	public String getiTitle() {
+		return iTitle;
 	}
 
-	public void setpNo(int pNo) {
-		this.pNo = pNo;
+	public void setiTitle(String iTitle) {
+		this.iTitle = iTitle;
 	}
 
-	public String getpTitle() {
-		return pTitle;
+	public String getiContent() {
+		return iContent;
 	}
 
-	public void setpTitle(String pTitle) {
-		this.pTitle = pTitle;
+	public void setiContent(String iContent) {
+		this.iContent = iContent;
 	}
 
-	public String getpContent() {
-		return pContent;
+	public String getiImg() {
+		return iImg;
 	}
 
-	public void setpContent(String pContent) {
-		this.pContent = pContent;
+	public void setiImg(String iImg) {
+		this.iImg = iImg;
 	}
 
-	public String getpImg() {
-		return pImg;
+	public String getiCategory() {
+		return iCategory;
 	}
 
-	public void setpImg(String pImg) {
-		this.pImg = pImg;
+	public void setiCategory(String iCategory) {
+		this.iCategory = iCategory;
 	}
 
-	public String getpCategory() {
-		return pCategory;
+	public int getiHits() {
+		return iHits;
 	}
 
-	public void setpCategory(String pCategory) {
-		this.pCategory = pCategory;
-	}
-
-	public int getpHits() {
-		return pHits;
-	}
-
-	public void setpHits(int pHits) {
-		this.pHits = pHits;
-	}
-
-	public int getpLike() {
-		return pLike;
-	}
-
-	public void setpLike(int pLike) {
-		this.pLike = pLike;
+	public void setiHits(int iHits) {
+		this.iHits = iHits;
 	}
 
 	public Timestamp getwRegistDate() {
@@ -146,45 +125,7 @@ public class ContentItemdto {
 	public void setwRegistDate(Timestamp wRegistDate) {
 		this.wRegistDate = wRegistDate;
 	}
-
-
-	public int getbId() {
-		return bId;
-	}
-
-	public void setbId(int bId) {
-		this.bId = bId;
-	}
-
-	public String getbName() {
-		return bName;
-	}
-
-	public void setbName(String bName) {
-		this.bName = bName;
-	}
-
-	public String getbTitle() {
-		return bTitle;
-	}
-
-	public void setbTitle(String bTitle) {
-		this.bTitle = bTitle;
-	}
-
-	public String getbContent() {
-		return bContent;
-	}
-
-	public void setbContent(String bContent) {
-		this.bContent = bContent;
-	}
-
-	public Timestamp getbDate() {
-		return bDate;
-	}
-
-	public void setbDate(Timestamp bDate) {
-		this.bDate = bDate;
-	}
+	
+	
+	
 }
