@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>haederGuest</title>
+    <title>headerLogin</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
@@ -84,8 +84,18 @@
             
             <a href="" class="title"><h1>마음만은 TOP 개발자</h1></a>
             <ul>
-               <li><a href="home.jsp" class="login">로그인</a></li>
-                <li><a href="signup.jsp" class="login">회원가입</a></li>
+            
+            
+            <% //세션값이 없으면 회원가입 표시 아닐경우 로그인으로 표시됨. 
+            Object email = session.getAttribute("email");
+            if(email == null) {%>
+                <li><a href="Signup.do" class="Guest">회원가입</a></li>
+                <li><a href="Home.do" class="Guest">로그인</a></li>
+			<% }else {%>
+                <li><a href="" class="login">마이페이지</a></li>
+                <li><a href="Logout.do" class="login">로그아웃</a></li>
+				
+			<%}%> 
             </ul>
         </div>
         <div class="header_sublogo">

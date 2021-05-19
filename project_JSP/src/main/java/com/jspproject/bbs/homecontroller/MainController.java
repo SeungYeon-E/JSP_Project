@@ -14,6 +14,8 @@ import com.jspproject.bbs.command.Command;
 import com.jspproject.bbs.command.CommentWriteCommand;
 import com.jspproject.bbs.command.ContentItemCommand;
 import com.jspproject.bbs.command.ContentItemDeleteCommand;
+import com.jspproject.bbs.command.UserLoginCommand;
+import com.jspproject.bbs.command.UserRegisterCommand;
 
 /**
  * Servlet implementation class MainController
@@ -75,73 +77,103 @@ public class MainController extends HttpServlet {
 //			viewPage = "List.jsp";
 //			break;
 
-		// 홈(로그인)
-		case ("/Login.do"):
-//			command = new (); // 커맨드(메소드)적기
-//			command.execute(request, response);
-			viewPage = "Login.jsp";
+		/*
+		 * 단순 페이지 이동
+		 */
+		//로그인 창으로 이동
+		case("/Home.do"): // 실행시 ~~.do사용
+			viewPage = "Home.jsp"; // 실행할 jsp파일
+		break;
+		
+		//회원가입 창으로 이동 
+		case("/Signup.do"): // 실행시 ~~.do사용
+			viewPage = "Signup.jsp"; // 실행할 jsp파일
 			break;
-
-		// 메인페이지 - 목록보기
-		case ("/main.do"): // 실행시 ~~.do사용
-//			command = new (); // 커맨드(메소드)적기
-//			command.execute(request, response, session);
-			viewPage = "Main.jsp"; // 실행할 jsp파일
+		
+		//이용약관
+		case("/TermsAndConditions.do"): // 실행시 ~~.do사용
+			viewPage = "TermsAndConditions.jsp"; // 실행할 jsp파일
+		break;
+		
+		//개인정보 처리방침
+		case("/PrivacyPolicy.do"): // 실행시 ~~.do사용
+			viewPage = "PrivacyPolicy.jsp"; // 실행할 jsp파일
+		break;
+		
+		//이메일 찾기창
+		case("/emailCheckForm.do"): // 실행시 ~~.do사용
+			viewPage = "EmailSearch.jsp"; // 실행할 jsp파일
+		break;
+		
+		//비밀번호 찾기창
+		case("/PwSearch.do"): // 실행시 ~~.do사용
+			viewPage = "PwSearch.jsp"; // 실행할 jsp파일
+		break;
+		
+		//메인으로
+		case("/Main.do"): // 실행시 ~~.do사용
+			viewPage = "Header.jsp"; // 실행할 jsp파일
+		break;
+		
+		//로그인실패
+		case("/LoginFail.do"): // 실행시 ~~.do사용
+			viewPage = "LoginFail.jsp"; // 실행할 jsp파일
+		break;
+		
+		//로그아웃
+		case("/Logout.do"): // 실행시 ~~.do사용
+			//세션끔
+			session.invalidate();
+			viewPage = "Home.jsp"; // 실행할 jsp파일
+		break;
+		
+		
+			
+		/*
+		 * 메소드 실행
+		 */
+		
+		//회원가입
+		case("/register.do"):
+			command = new UserRegisterCommand(); // 커맨드(메소드)적기
+			command.execute(request, response, session);
+			viewPage = "Home.do";
 			break;
-
-		// Item - list
-		case ("/ListItem.do"): // 실행시 ~~.do사용
-//			command = new (); // 커맨드(메소드)적기
-//			command.execute(request, response);
-			viewPage = "ListItem.jsp"; // 실행할 jsp파일
+		//로그인 클릭시	
+		case("/login.do"):
+			command = new UserLoginCommand(); // 커맨드(메소드)적기
+			command.execute(request, response, session);
+			
+			//세션에 이메일값 저장해서 공백이면 로그인 실패처리시킴 사용엔 문제없지만 사실 이부분 피드백이 필요함...
+			if(session.getAttribute("email").equals("")) {
+				session.invalidate();
+				viewPage = "LoginFail.do";
+			}else {
+				viewPage = "Main.do";
+			}
 			break;
-
-		// Item - view 0517 이승연
+			
+		// Item - 상세페이지 불러오기 0517 이승연
 		case ("/ContentViewItem.do"): // 실행시 ~~.do사용
 			command = new ContentItemCommand(); // 커맨드(메소드)적기
 			command.execute(request, response, session);
 			viewPage = "ContentViewItem.jsp"; // 실행할 jsp파일
 			break;
-		// Item - view 0518 이승연
+		// Item - 상세페이지 댓글입력 0518 이승연
 		case ("/CommentWriteItem.do"): // 실행시 ~~.do사용
 			command = new CommentWriteCommand(); // 커맨드(메소드)적기
 			command.execute(request, response, session);
+			command = new ContentItemCommand(); // 커맨드(메소드)적기
+			command.execute(request, response, session);
 			viewPage = "ContentViewItem.jsp"; // 실행할 jsp파일
 			break;
-		// Item - view 0518 이승연	
+		// Item - 게시물 삭제하기 0518 이승연	
 		case("/ContentViewItemdelete.do"):
 			command = new ContentItemDeleteCommand();
 			command.execute(request, response, session);
-			viewPage = "main.do";
+			viewPage = "listItem.do";
 			break;
 
-		// Item - upload
-		case ("/"): // 실행시 ~~.do사용
-//			command = new (); // 커맨드(메소드)적기
-//			command.execute(request, response);
-			viewPage = ".jsp"; // 실행할 jsp파일
-			break;
-
-		// Tip - list
-		case ("/ListTip.do"): // 실행시 ~~.do사용
-//			command = new (); // 커맨드(메소드)적기
-//			command.execute(request, response);
-			viewPage = "ListTip.jsp"; // 실행할 jsp파일
-			break;
-
-		// Tip - view
-		case ("/ContentViewTip.jsp.do"): // 실행시 ~~.do사용
-//			command = new (); // 커맨드(메소드)적기
-//			command.execute(request, response);
-			viewPage = "ContentViewTip.jsp"; // 실행할 jsp파일
-			break;
-
-		// Tip - upload
-		case (""): // 실행시 ~~.do사용
-//			command = new (); // 커맨드(메소드)적기
-//			command.execute(request, response);
-			viewPage = ".jsp"; // 실행할 jsp파일
-			break;
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

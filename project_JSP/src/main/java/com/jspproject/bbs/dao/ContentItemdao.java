@@ -172,11 +172,12 @@ public class ContentItemdao {
 
 //				System.out.println(resultset);
 			while (resultset.next()) {
+				int ccNo = resultset.getInt("ccNo");
 				String userEmail = resultset.getString("user_email");
 				String cContent = resultset.getString("cContent");
 				Timestamp cRegistDate = resultset.getTimestamp("cRegistDate");
 
-				ContentItemdto dto = new ContentItemdto(userEmail, cContent, cRegistDate);
+				ContentItemdto dto = new ContentItemdto(ccNo, userEmail, cContent, cRegistDate);
 				dtos.add(dto);
 //					System.out.println("cContent="+cContent);
 			}

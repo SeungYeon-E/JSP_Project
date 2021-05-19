@@ -12,12 +12,12 @@ public class CommentWriteCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
 		String bId = request.getParameter("bId");
-		String userEmail = request.getParameter("userEmail");
+		String userEmail = (String) session.getAttribute("email");
 		String ccomment = request.getParameter("ccomment");
 		
 		ContentItemdao dao = new ContentItemdao();
 		dao.commentWrite(bId, userEmail, ccomment);
-
+		
 	}
 
 }

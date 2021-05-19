@@ -81,7 +81,7 @@
 <body>
     <div id="pwsearch-box">
       <h1>비밀번호 찾기</h1> 
-      <form action="">
+      <form action="Login.do">
         <span>이메일</span><br>
         <input type="text" name="email" placeholder="이메일을 입력해주세요." />
         <span>핸드폰번호</span><br>

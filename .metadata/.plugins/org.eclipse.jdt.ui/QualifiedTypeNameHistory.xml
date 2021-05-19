@@ -9,6 +9,8 @@
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="java.com.jspproject.bbs.contentItemdto.ContentItemdao"/>
     <fullyQualifiedTypeName name="java.com.jspproject.bbs.contentItemdao.ContentItemdto"/>
-    <fullyQualifiedTypeName name="com.jspproject.bbs.dao.ContentItemdao"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.dto.ContentItemdto"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.CommentWriteCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.ContentItemDeleteCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.dao.ContentItemdao"/>
 </qualifiedTypeNameHistroy>

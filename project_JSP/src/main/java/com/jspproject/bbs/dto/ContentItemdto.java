@@ -11,6 +11,7 @@ public class ContentItemdto {
 	int iHits;
 	Timestamp wRegistDate;
 	
+	int ccNo;
 	String cContent;
 	Timestamp cRegistDate;
 	
@@ -34,8 +35,9 @@ public class ContentItemdto {
 	this.wRegistDate = wRegistDate;
 }
 
-	public ContentItemdto(String userEmail, String cContent, Timestamp cRegistDate) {
+	public ContentItemdto(int ccNo, String userEmail, String cContent, Timestamp cRegistDate) {
 		super();
+		this.ccNo = ccNo;
 		this.userEmail = userEmail;
 		this.cContent = cContent;
 		this.cRegistDate = cRegistDate;
@@ -45,6 +47,14 @@ public class ContentItemdto {
 		// TODO Auto-generated constructor stub
 	}
 	
+
+	public int getCcNo() {
+		return ccNo;
+	}
+
+	public void setCcNo(int ccNo) {
+		this.ccNo = ccNo;
+	}
 
 	public String getcContent() {
 		return cContent;

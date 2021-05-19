@@ -61,6 +61,8 @@
     color: rgb(94, 103, 228);
     }
  
+
+
 </style>
 <title>footer</title>
 </head>
@@ -70,19 +72,17 @@
             <h2> 나는야 개발자 </h2>
             
             <ul class="foot_link">
-                <li><a href="">회사소개</a></li>
-                <li>I</li>
                 <li><a href="">1:1문의</a></li>
                 <li>I</li>
                 <li><a href="">기부</a></li>
                 <li>I</li>
-                <li><a href="">이용약관</a></li>
+                <li><a href="TermsAndConditions.do" target='_blank'>이용약관</a></li>
                 <li>I</li>
-                <li><a href="">개인정보취급방침</a></li>
+                <li><a href="PrivacyPolicy.do"  target='_blank'>개인정보취급방침</a></li>
            </ul>
             
             <p class="adress">상호 : 나는야개발자(주) <span style="margin:0 3px">|</span>  소재지 : 서울특별시 서초구 강남대로 279, 5층(서초동, 백향빌딩) 
-            <br>사업자 등록번호 : 000-00-00000 <span style="margin:0 3px">|</span>  개인정보관리책임자 : 우영진영 
+            <br>사업자 등록번호 : 000-00-00000 <span style="margin:0 3px">|</span>  개인정보관리책임자 : 우연진영 
             <br> Tel : 0000-0000 <span style="margin:0 3px">|</span>  Fax : 000-000-0000  <span style="margin:0 3px">|</span>   Email : admin@imdev.com 
             <br>고객님은 저희 사이트에 매료되었으므로 매일 방문할것입니다
             <br>Copyright 나는야개발자 All Right Reserved</p>

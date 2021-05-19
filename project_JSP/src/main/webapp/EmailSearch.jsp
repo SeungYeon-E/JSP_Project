@@ -81,7 +81,7 @@
 <body>
     <div id="pwsearch-box">
       <h1>이메일 찾기</h1> 
-      <form action="home.jsp">
+      <form action="Login.do" method="post">
         <span>이름</span><br>
         <input type="text" name="username" placeholder="이름을 입력해주세요." />
         <span>핸드폰번호</span><br>
