@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.command.Command;
+import com.jspproject.bbs.command.CommentModifyCommand;
 import com.jspproject.bbs.command.CommentWriteCommand;
 import com.jspproject.bbs.command.ContentItemCommand;
 import com.jspproject.bbs.command.ContentItemDeleteCommand;
@@ -127,7 +128,6 @@ public class MainController extends HttpServlet {
 			viewPage = "Home.jsp"; // 실행할 jsp파일
 		break;
 		
-		
 			
 		/*
 		 * 메소드 실행
@@ -167,13 +167,20 @@ public class MainController extends HttpServlet {
 			command.execute(request, response, session);
 			viewPage = "ContentViewItem.jsp"; // 실행할 jsp파일
 			break;
-		// Item - 게시물 삭제하기 0518 이승연	
+		// Item - 상세페이지 게시물 삭제하기 0518 이승연	
 		case("/ContentViewItemdelete.do"):
 			command = new ContentItemDeleteCommand();
 			command.execute(request, response, session);
-			viewPage = "listItem.do";
+			viewPage = "ContentDeleteView.jsp"; // 실행할 jsp파일
 			break;
-
+		// Item - 상세페이지 게시물 삭제하기 0520 이승연	
+		case("/CommentModifyItem.do"):
+			command = new CommentModifyCommand();
+			command.execute(request, response, session);
+			command = new ContentItemCommand(); // 커맨드(메소드)적기
+			command.execute(request, response, session);
+			viewPage = "ContentViewItem.jsp"; // 실행할 jsp파일
+			break;
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

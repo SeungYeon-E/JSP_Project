@@ -6,8 +6,16 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="ContentItemdto"/>
+		<item key="selection" value="deleteContent"/>
 		<list key="findhistory">
+			<item value="deletecontent"/>
+			<item value="comment"/>
+			<item value="deleteContent"/>
+			<item value="btnwritecomment"/>
+			<item value="bbb"/>
+			<item value="Mail"/>
+			<item value="session"/>
+			<item value="buttonHide"/>
 			<item value="ContentItemdto"/>
 			<item value="Content"/>
 			<item value="content"/>

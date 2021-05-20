@@ -5,9 +5,61 @@
 <!DOCTYPE html>
 <html>
 <script type="text/javascript">
-	function modifyComment() {
-		var ccNo = document.getElementById("ccNo").value;
-		var url = "commentModify.do?ccNo=" + ccNo;
+	/* var myEmail = sessionStorage.getItem("email");*/
+	/* 로그인된 아이디 세션값받기 */
+	var myEmail = '<%=(String)session.getAttribute("email")%>';
+	
+	console.log("="+myEmail);
+	/* 게시물 삭제 */
+	function deleteContent() {
+		var retVal = confirm("게시물 삭제하시겠습니까?")
+		if(retVal == true){
+			var iNo = document.getElementById("deletecontent").value;
+			var url = "ContentViewItemdelete.do?iNo=" + iNo;
+			open(url,"deleteContent",
+					"roolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
+		}else{
+			return false;
+		}
+	}
+	/* 버튼 숨기기 */
+	function buttonHide() {
+		console.log(myEmail);
+		const table = document.getElementById('comlist');
+		var mdibtns = document.getElementsByName("modifycomment");
+		var delbtns = document.getElementsByName("deletecomment");
+		
+		for(var i=0; i<table.rows.length-1; i++){
+			var str = table.rows[i+1].cells[0].innerHTML;
+			if(myEmail != str){
+				mdibtns[i].style.display="none";
+				delbtns[i].style.display="none";
+				console.log("btn:"+i+";value:"+mdibtns[i].value+str);
+			}
+		}
+		
+		var modifyContent = document.getElementById("modifyContent");
+		var template = '${content_view.userEmail}';
+		if(myEmail != template){
+			modifyContent.style.display="none";
+			console.log("="+template);
+		}
+		
+		var deletecontent = document.getElementById("deletecontent");
+		if(myEmail != template){
+			deletecontent.style.display="none";
+		}
+		
+		var writecomment = document.getElementById("writecomment");
+		var commenttext = document.getElementById("commenttext");
+		if(myEmail == "null"){
+			writecomment.style.display="none";
+			commenttext.style.display="none";
+		}
+	}
+	
+	/* 댓글 */
+	function writeComment() {
 		var form = document.commentWrite
 		//Empty Check
 		if(form.ccomment.value == ""){
@@ -15,22 +67,27 @@
 			form.ccomment.focus();
 			return false;
 		}
-		
-		open(
-				url,
-				"commentModify",
-				"roolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
 		form.submit();
 	}
-	function buttonHide() {
-		var myEmail = sessionStorage.getItem("email");
-		var btns = document.getElementsByName("commentModify");
-		for(var i = 0;i<btns.length;i++){
-			if(myEmail != btns[i].value){
-				btns[i].style.display="none";
-				console.log("btn:"+i+";value:"+btns[i].value);
-			}
+	/* 댓글 수정 */
+	function modifyComment() {
+		var ccNo = document.getElementById("ccNo").value;
+		var url = "CommentModifyItem.do?ccNo=" + ccNo;
+		open(
+				url,
+				"CommentModifyItem",
+				"roolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
+	}
+	/* 댓글 삭제 */
+	function deleteComment() {
+		var form = document.commentList
+		//Empty Check
+		if(form.ccomment.value == ""){
+			alert("comment를 입력하세요!");
+			form.ccomment.focus();
+			return false;
 		}
+		form.submit();
 	}
 </script>
 <style>
@@ -81,20 +138,6 @@ div {
 
 <body>
 
-	<!-- 아이디 구별하기 -->
-	<%
-	String userID = null;
-	if (session.getAttribute("email") != null) {
-		userID = (String) session.getAttribute("userID");
-	}
-	int bbsID = 0;
-	if (request.getParameter("bbsID") != null) {
-		bbsID = Integer.parseInt(request.getParameter("bbsID"));
-	}
-	if (session.getAttribute("email") == null) {
-	}
-	%>
-
 	<jsp:include page="./Header.jsp"></jsp:include>
 
 	<!-- 상세페이지 -->
@@ -112,11 +155,9 @@ div {
 				Views <i>${content_view.iHits}</i>
 			</h6>
 			<div>
-
-				<input type="submit" value="수정" class="btn btn-primary pull-right">&nbsp;&nbsp;&nbsp;
-				<a href="list.do" class="btn btn-primary pull-right">목록보기</a>&nbsp;&nbsp;&nbsp;
-				<a href="ContentViewItemdelete.do?bId=${content_view.iNo}"
-					class="btn btn-primary pull-right">삭제</a>
+				<input type="submit" value="수정" id="modifyContent" class="btn btn-primary pull-right">&nbsp;&nbsp;&nbsp;
+				<a href="list.do" class="btn btn-primary pull-right">목록</a>&nbsp;&nbsp;&nbsp;
+				<button type="button" onclick="deleteContent()" id="deletecontent" value="${content_view.iNo}" class="btn btn-primary pull-right">삭제</button>
 			</div>
 			<hr />
 			<div class="form-group">
@@ -137,18 +178,18 @@ div {
 						<div class="panel-body">
 							<!-- 댓글입력 -->
 							<form action="CommentWriteItem.do" method="post" name="commentWrite">
-								<input type="text" name="ccomment" id="reply__write__form"
+								<input type="hidden" id="bId" value="${content_view.iNo}">
+								<input type="text" name="ccomment" id="commenttext"
 									class="form-control" placeholder="write a comment...">
-								<br> <input type="hidden" name="bId"
-									value="${content_view.iNo}"> <input type="submit"
-									value="댓글입력" class="btn btn-primary pull-right">
+								<br>
+									<button type="button" onclick="writeComment()" id="writecomment" name ="bId" value="${content_view.iNo}" class="btn btn-primary pull-right">댓글입력</button>
 								<div class="clearfix"></div>
 							</form>
 							<hr />
 							<div class="media-body">
 								<!-- 댓글 리스트 시작-->
-								<form action="moditycomment.do" method="post" name="commentList">
-									<table border="1">
+								<form action="#" method="post" name="commentList">
+									<table id="comlist" border="1">
 										<tr>
 											<th>이름</th>
 											<th>내용</th>
@@ -157,29 +198,21 @@ div {
 										</tr>
 										<c:forEach items="${comment_view}" var="comment">
 											<!-- 리스트커멘드에서 정해줌 아이템즈는  -->
-											<input type="hidden" id="ccNo" value="${comment.ccNo}">
 											<tr>
 												<td>${comment.userEmail}</td>
 												<td>${comment.cContent}</td>
 												<td>${comment.cRegistDate}</td>
 												<td>
-												<button type="button" onclick="modifyComment();" name="commentModify" value="${comment.userEmail}">수정하기</button>
-												<input type="submit" value="수정"
-													class="btn btn-primary pull-right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-													<a href="commentdelete.do?bId=${comment.ccNo}"
-													class="btn btn-primary pull-right">삭제</a></td>
+												<button type="button" onclick="modifyComment();" name="modifycomment" value="${comment.ccNo}" class="btn btn-primary pull-right">수정하기</button>
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<button type="button" onclick="deleteComment();" name="deletecomment" value="${comment.ccNo}" class="btn btn-primary pull-right">삭제하기</button>
 											</tr>
 										</c:forEach>
 									</table>
 								</form >
-								<script type="text/javascript">buttonHide();</script>
-								<!-- 댓글 아이템 -->
-
-								<strong class="text-primary">${comment.userEmail}</strong>
-								<p>${comment.cContent}</p>
-								<p>${comment.cRegistDate}</p>
+								<script type="text/javascript">buttonHide();</script><!-- 다출력후 숨기기 위해서!! -->
+								<br />
 							</div>
-
 							<!-- 댓글 리스트 끝-->
 						</div>
 					</div>

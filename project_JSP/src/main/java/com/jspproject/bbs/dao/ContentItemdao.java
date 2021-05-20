@@ -95,8 +95,9 @@ public class ContentItemdao {
 
 		return content;
 	}
-	
-	public void contentDelete(String strID) {
+	//게시물 삭제!!
+	public String contentDelete(String strID) {
+		String result = "false";
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
@@ -106,7 +107,7 @@ public class ContentItemdao {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, Integer.parseInt(strID));
 			preparedStatement.executeUpdate();
-			
+			result = "true";
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -116,9 +117,10 @@ public class ContentItemdao {
 				if(connection != null) connection.close();
 			}catch(Exception e){
 				e.printStackTrace();
-				
+				result = "false";
 			}
 		}
+		return result;
 	}
 
 	// 게시물 리뷰 작성
@@ -153,7 +155,7 @@ public class ContentItemdao {
 			}
 		}
 	}
-	//게시물 삭제 dao
+	//게시물 리뷰 Lsit
 	public ArrayList<ContentItemdto> commentSelect(String bId) {
 		ArrayList<ContentItemdto> dtos = new ArrayList<ContentItemdto>();
 		Connection connection = null;
@@ -164,7 +166,7 @@ public class ContentItemdao {
 //				System.out.println(dataSource1);
 			connection = dataSource.getConnection();
 
-			String query = "select * from ccomment\n" + "where itemInfo_iNo = ? ;";
+			String query = "select * from ccomment\n" + "where itemInfo_iNo = ? and cDelDate is null;";
 
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, Integer.parseInt(bId));
@@ -199,5 +201,59 @@ public class ContentItemdao {
 			}
 		}
 		return dtos;
+	}
+	//게시물 리뷰 수정
+	public void commentModiey(String ccNo, String cContent) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			String query = "update	ccomment set cContent = ?, cEditDate = now() where ccNo = ?";
+			preparedStatement = connection.prepareStatement(query);
+			
+			preparedStatement.setString(1, cContent);
+			preparedStatement.setString(2, ccNo);
+			
+			preparedStatement.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				//정리 다시 거꾸로 정리해주는것
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e){
+				e.printStackTrace();
+				
+			}
+		}
+	}
+	//게시물 리뷰 삭제
+	public void commentDelete(String ccNo) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		
+		try {
+			connection = dataSource.getConnection();
+			
+			String query = "update	ccomment set cDelDate = now() where ccNo = ?";
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, Integer.parseInt(ccNo));
+			preparedStatement.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				//정리 다시 거꾸로 정리해주는것
+				if(preparedStatement != null) preparedStatement.close();
+				if(connection != null) connection.close();
+			}catch(Exception e){
+				e.printStackTrace();
+				
+			}
+		}
 	}
 }
