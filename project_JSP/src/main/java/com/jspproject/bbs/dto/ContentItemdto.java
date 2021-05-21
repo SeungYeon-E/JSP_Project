@@ -1,19 +1,21 @@
 package com.jspproject.bbs.dto;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class ContentItemdto {
 	int iNo;
+	String userName;
 	String userEmail;
 	String iTitle;
 	String iContent;
 	String iCategory;
 	int iHits;
-	Timestamp wRegistDate;
+	Date wRegistDate;
 	
 	int ccNo;
 	String cContent;
-	Timestamp cRegistDate;
+	Date cRegistDate;
 	
 	
 	// 굳이 이미지 가져올 필요가 없어
@@ -22,10 +24,11 @@ public class ContentItemdto {
 	
 	
 	
-	public ContentItemdto(int iNo, String userEmail, String iTitle, String iContent, String iImg, String iCategory,
-		int iHits, Timestamp wRegistDate) {
+	public ContentItemdto(int iNo, String userName, String userEmail, String iTitle, String iContent, String iImg, String iCategory,
+		int iHits, Date wRegistDate) {
 	super();
 	this.iNo = iNo;
+	this.userName = userName;
 	this.userEmail = userEmail;
 	this.iTitle = iTitle;
 	this.iContent = iContent;
@@ -35,9 +38,16 @@ public class ContentItemdto {
 	this.wRegistDate = wRegistDate;
 }
 
-	public ContentItemdto(int ccNo, String userEmail, String cContent, Timestamp cRegistDate) {
+	public ContentItemdto(int ccNo, String cContent) {
 		super();
 		this.ccNo = ccNo;
+		this.cContent = cContent;
+	}
+
+	public ContentItemdto(int ccNo, String userName, String userEmail, String cContent, Date cRegistDate) {
+		super();
+		this.ccNo = ccNo;
+		this.userName = userName;
 		this.userEmail = userEmail;
 		this.cContent = cContent;
 		this.cRegistDate = cRegistDate;
@@ -47,6 +57,14 @@ public class ContentItemdto {
 		// TODO Auto-generated constructor stub
 	}
 	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
 	public int getCcNo() {
 		return ccNo;
@@ -64,11 +82,11 @@ public class ContentItemdto {
 		this.cContent = cContent;
 	}
 
-	public Timestamp getcRegistDate() {
+	public Date getcRegistDate() {
 		return cRegistDate;
 	}
 
-	public void setcRegistDate(Timestamp cRegistDate) {
+	public void setcRegistDate(Date cRegistDate) {
 		this.cRegistDate = cRegistDate;
 	}
 
@@ -128,11 +146,11 @@ public class ContentItemdto {
 		this.iHits = iHits;
 	}
 
-	public Timestamp getwRegistDate() {
+	public Date getwRegistDate() {
 		return wRegistDate;
 	}
 
-	public void setwRegistDate(Timestamp wRegistDate) {
+	public void setwRegistDate(Date wRegistDate) {
 		this.wRegistDate = wRegistDate;
 	}
 	

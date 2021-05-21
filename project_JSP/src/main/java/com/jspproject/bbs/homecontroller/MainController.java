@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.command.Command;
+import com.jspproject.bbs.command.CommentDeleteCommand;
 import com.jspproject.bbs.command.CommentModifyCommand;
+import com.jspproject.bbs.command.CommentViewCommend;
 import com.jspproject.bbs.command.CommentWriteCommand;
 import com.jspproject.bbs.command.ContentItemCommand;
 import com.jspproject.bbs.command.ContentItemDeleteCommand;
@@ -81,105 +83,109 @@ public class MainController extends HttpServlet {
 		/*
 		 * 단순 페이지 이동
 		 */
-		//로그인 창으로 이동
-		case("/Home.do"): // 실행시 ~~.do사용
+		// 로그인 창으로 이동
+		case ("/Home.do"): // 실행시 ~~.do사용
 			viewPage = "Home.jsp"; // 실행할 jsp파일
-		break;
-		
-		//회원가입 창으로 이동 
-		case("/Signup.do"): // 실행시 ~~.do사용
+			break;
+
+		// 회원가입 창으로 이동
+		case ("/Signup.do"): // 실행시 ~~.do사용
 			viewPage = "Signup.jsp"; // 실행할 jsp파일
 			break;
-		
-		//이용약관
-		case("/TermsAndConditions.do"): // 실행시 ~~.do사용
+
+		// 이용약관
+		case ("/TermsAndConditions.do"): // 실행시 ~~.do사용
 			viewPage = "TermsAndConditions.jsp"; // 실행할 jsp파일
-		break;
-		
-		//개인정보 처리방침
-		case("/PrivacyPolicy.do"): // 실행시 ~~.do사용
+			break;
+
+		// 개인정보 처리방침
+		case ("/PrivacyPolicy.do"): // 실행시 ~~.do사용
 			viewPage = "PrivacyPolicy.jsp"; // 실행할 jsp파일
-		break;
-		
-		//이메일 찾기창
-		case("/emailCheckForm.do"): // 실행시 ~~.do사용
+			break;
+
+		// 이메일 찾기창
+		case ("/emailCheckForm.do"): // 실행시 ~~.do사용
 			viewPage = "EmailSearch.jsp"; // 실행할 jsp파일
-		break;
-		
-		//비밀번호 찾기창
-		case("/PwSearch.do"): // 실행시 ~~.do사용
+			break;
+
+		// 비밀번호 찾기창
+		case ("/PwSearch.do"): // 실행시 ~~.do사용
 			viewPage = "PwSearch.jsp"; // 실행할 jsp파일
-		break;
-		
-		//메인으로
-		case("/Main.do"): // 실행시 ~~.do사용
+			break;
+
+		// 메인으로
+		case ("/Main.do"): // 실행시 ~~.do사용
 			viewPage = "Header.jsp"; // 실행할 jsp파일
-		break;
-		
-		//로그인실패
-		case("/LoginFail.do"): // 실행시 ~~.do사용
+			break;
+
+		// 로그인실패
+		case ("/LoginFail.do"): // 실행시 ~~.do사용
 			viewPage = "LoginFail.jsp"; // 실행할 jsp파일
-		break;
-		
-		//로그아웃
-		case("/Logout.do"): // 실행시 ~~.do사용
-			//세션끔
+			break;
+
+		// 로그아웃
+		case ("/Logout.do"): // 실행시 ~~.do사용
+			// 세션끔
 			session.invalidate();
 			viewPage = "Home.jsp"; // 실행할 jsp파일
-		break;
-		
-			
+			break;
+
 		/*
 		 * 메소드 실행
 		 */
-		
-		//회원가입
-		case("/register.do"):
+
+		// 회원가입
+		case ("/register.do"):
 			command = new UserRegisterCommand(); // 커맨드(메소드)적기
 			command.execute(request, response, session);
 			viewPage = "Home.do";
 			break;
-		//로그인 클릭시	
-		case("/login.do"):
+		// 로그인 클릭시
+		case ("/login.do"):
 			command = new UserLoginCommand(); // 커맨드(메소드)적기
 			command.execute(request, response, session);
-			
-			//세션에 이메일값 저장해서 공백이면 로그인 실패처리시킴 사용엔 문제없지만 사실 이부분 피드백이 필요함...
-			if(session.getAttribute("email").equals("")) {
+
+			// 세션에 이메일값 저장해서 공백이면 로그인 실패처리시킴 사용엔 문제없지만 사실 이부분 피드백이 필요함...
+			if (session.getAttribute("email").equals("")) {
 				session.invalidate();
 				viewPage = "LoginFail.do";
-			}else {
+			} else {
 				viewPage = "Main.do";
 			}
 			break;
-			
+		/*
+		 * ----------------------------- 21.05.21 seungyeon Item 상세페이지 현재 userEmail 변수
+		 * 선언해서 진행중 -> 상세페이지 게시물 삭제하기 list로 돌아가기 변경해야함 -----------------------------
+		 */
 		// Item - 상세페이지 불러오기 0517 이승연
 		case ("/ContentViewItem.do"): // 실행시 ~~.do사용
 			command = new ContentItemCommand(); // 커맨드(메소드)적기
 			command.execute(request, response, session);
 			viewPage = "ContentViewItem.jsp"; // 실행할 jsp파일
 			break;
-		// Item - 상세페이지 댓글입력 0518 이승연
-		case ("/CommentWriteItem.do"): // 실행시 ~~.do사용
-			command = new CommentWriteCommand(); // 커맨드(메소드)적기
-			command.execute(request, response, session);
-			command = new ContentItemCommand(); // 커맨드(메소드)적기
-			command.execute(request, response, session);
-			viewPage = "ContentViewItem.jsp"; // 실행할 jsp파일
-			break;
-		// Item - 상세페이지 게시물 삭제하기 0518 이승연	
-		case("/ContentViewItemdelete.do"):
+		// Item - 상세페이지 게시물 삭제하기 0518 이승연
+		case ("/ContentViewItemdelete.do"):
 			command = new ContentItemDeleteCommand();
 			command.execute(request, response, session);
 			viewPage = "ContentDeleteView.jsp"; // 실행할 jsp파일
 			break;
-		// Item - 상세페이지 게시물 삭제하기 0520 이승연	
-		case("/CommentModifyItem.do"):
-			command = new CommentModifyCommand();
+		// Item - 상세페이지 댓글입력 0518 이승연
+		case ("/CommentWriteItem.do"): // 실행시 ~~.do사용
+			command = new CommentWriteCommand(); // 커맨드(메소드)적기
 			command.execute(request, response, session);
-			command = new ContentItemCommand(); // 커맨드(메소드)적기
+			viewPage = "ContentViewItem.do"; // 실행할 jsp파일
+			break;
+		// Item - 상세페이지 댓글 수정하기 0521 이승연
+		case ("/CommentModifyItem.do"):
+			command = new CommentViewCommend();
 			command.execute(request, response, session);
-			viewPage = "ContentViewItem.jsp"; // 실행할 jsp파일
+			viewPage = "CommentModifyView.jsp"; // 실행할 jsp파일
+			break;
+		// Item - 상세페이지 댓글 삭제하기 0521 이승연
+		case ("/CommentDeleteItem.do"):
+			command = new CommentDeleteCommand();
+			command.execute(request, response, session);
+			viewPage = "CommentDeleteView.jsp"; // 실행할 jsp파일
 			break;
 		}
 

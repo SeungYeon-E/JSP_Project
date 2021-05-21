@@ -12,11 +12,11 @@ public class CommentModifyCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
-		String bId =request.getParameter("bId");
-		String bContent = request.getParameter("bContent");
+		String ccNo =request.getParameter("ccNo");
+		String cContent = request.getParameter("cContent");
 		
 		ContentItemdao dao = new ContentItemdao();
-		dao.commentModiey(bId, bContent);
+		dao.commentModiey(ccNo, cContent);
 		
 	}
 

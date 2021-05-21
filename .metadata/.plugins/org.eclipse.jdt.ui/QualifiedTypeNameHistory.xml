@@ -14,4 +14,6 @@
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.CommentModifyCommand"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.dao.ContentItemdao"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.dto.ContentItemdto"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
 </qualifiedTypeNameHistroy>

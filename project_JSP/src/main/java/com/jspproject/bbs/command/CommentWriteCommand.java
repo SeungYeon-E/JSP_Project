@@ -12,12 +12,23 @@ public class CommentWriteCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
 		String bId = request.getParameter("bId");
-		String userEmail = (String) session.getAttribute("email");
+		
+		/* 
+	 	-----------------------------
+	 	21.05.21 seungyeon
+	 	****현재 userEmail 변수 선언해서 진행중
+	 	-> 추후 세션으로 받아와서 바꿀 것.
+	 	-----------------------------
+		 */
+		
+//		String userEmail = (String) session.getAttribute("email");
+		String userEmail = "aaa@naver.com";
+		
 		String ccomment = request.getParameter("ccomment");
 		
 		ContentItemdao dao = new ContentItemdao();
 		dao.commentWrite(bId, userEmail, ccomment);
 		
 	}
-
+	
 }
