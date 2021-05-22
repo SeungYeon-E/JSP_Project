@@ -12,9 +12,8 @@ public class CommentDeleteCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
 		String ccNo =request.getParameter("ccNo");
-		
 		ContentItemdao dao = new ContentItemdao();
-		dao.commentDelete(ccNo);
+		String result = dao.commentDelete(ccNo);
+		request.setAttribute("result", result);
 	}
-
 }

@@ -6,8 +6,9 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="contentemail"/>
+		<item key="selection" value="commentList"/>
 		<list key="findhistory">
+			<item value="commentList"/>
 			<item value="contentemail"/>
 			<item value="deletecontent"/>
 			<item value="comment"/>
@@ -22,7 +23,6 @@
 			<item value="content"/>
 			<item value="Sys"/>
 			<item value="sys"/>
-			<item value="dataSource"/>
 		</list>
 		<list key="replacehistory">
 		</list>

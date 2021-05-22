@@ -80,24 +80,19 @@
 		form.submit();
 	}
 	/* 댓글 수정 */
-	function modifyComment() {
-		var ccNo = document.getElementById("ccNo").value;
-		var url = "CommentModifyItem.do?ccNo=" + ccNo;
-		open(url,"CommentModifyItem","roolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
+	function modifyComment(ccNum) {
+		var url = "CommentContentItem.do?ccNo=" + ccNum;
+		open(url,"ModifyComment","roolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
 	}
 	/* 댓글 삭제 */
-	function deleteComment() {
-		var form = document.commentList;
-		if (form.ccomment.value == "") {
-			alert("comment를 입력하세요!");
-			form.ccomment.focus();
+	function deleteComment(ccNum) {
+		var retVal = confirm("댓글 삭제하시겠습니까?");
+		if (retVal == true) {
+			var url = "CommentDeleteItem.do?ccNo=" + ccNum;
+			open(url,"deleteComment","roolbar=no, location=no,menubar=no,scrollbars=no,resizable=no,width=450,height=230");
+		} else {
 			return false;
 		}
-		form.submit();
-	}
-	function openNewWindow(window) {
-		open(window, "confirm",
-		"roolbar=no,location=no,menubar=no,scrollbars=no,resizable=no,width=300,height=150");
 	}
 </script>
 <style>
@@ -153,8 +148,6 @@ div {
 			<br />
 
 			<h6 class="m-2">
-			
-				
 				By <a href="content_view.do?bId=${content_view.userEmail}">${content_view.userName }</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Date <i>${content_view.wRegistDate}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Views <i>${content_view.iHits}</i>
@@ -210,11 +203,14 @@ div {
 												<td>${comment.cContent}</td>
 												<td>${comment.cRegistDate}</td>
 												<td>
-													<a href="javascript:openNewWindow('CommentModifyItem.do?ccNo=${comment.ccNo }')">
-													<input type="button" value="수정하기" name="modifycomment" class="btn btn-primary pull-right"></a>
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<%-- <a href="javascript:openNewWindow('CommentModifyItem.do?ccNo=${comment.ccNo }')">
+													<input type="button" value="수정하기" name="modifycomment" class="btn btn-primary pull-right"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													
 													<a href="javascript:openNewWindow('CommentDeleteItem.do?ccNo=${comment.ccNo }')">
-													<input type="button" value="삭제하기" name="deletecomment" class="btn btn-primary pull-right"></a>
+													<input type="button" value="삭제하기" name="deletecomment" class="btn btn-primary pull-right"></a> --%>
+													<button type="button" onclick="modifyComment(this.id);" name="modifycomment" id="${comment.ccNo}" value="${comment.ccNo}" class="btn btn-primary pull-right">수정하기</button>
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+													<button type="button" onclick="deleteComment(this.id);" name="deletecomment" id="${comment.ccNo}" value="${comment.ccNo}" class="btn btn-primary pull-right">삭제하기</button>
 											</tr>
 										</c:forEach>
 										<tr>

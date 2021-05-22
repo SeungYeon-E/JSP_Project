@@ -57,7 +57,8 @@ public class ContentItemdao {
 				// 이미지 출력을 위함
 				iContent = imgcontent(iContent, iImg);
 //				System.out.println(pContent);
-				dto = new ContentItemdto(iNo, userName, userEmail, iTitle, iContent, iImg, iCategory, iHits, wRegistDate);
+				dto = new ContentItemdto(iNo, userName, userEmail, iTitle, iContent, iImg, iCategory, iHits,
+						wRegistDate);
 
 			}
 
@@ -165,14 +166,14 @@ public class ContentItemdao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultset = null;
-		//page는 1부터 시작하지만, offset은 0부터 시작.(0~9(10개), 10~19(10개)와같이 offset을 설정해야 하기 때문)
+		// page는 1부터 시작하지만, offset은 0부터 시작.(0~9(10개), 10~19(10개)와같이 offset을 설정해야 하기 때문)
 		int offset = start - 1;
 		try {
 //			System.out.println(dataSource1);
 			connection = dataSource.getConnection();
 			// LIMIT {OFFSET}, {LIMIT} -> 쿼리결과중 offset번째부터 limit개의 튜플을 출력
 			String query = "select * from comment_item i, user u where  item_i_num = ? and u.email = i.user_email and ic_delete is null ORDER BY ic_num DESC LIMIT ?, ?";
-			
+
 			preparedStatement = connection.prepareStatement(query);
 			// 0을 나누면 에러가 발생하므로 예외처
 			preparedStatement.setInt(1, Integer.parseInt(bId));
@@ -228,7 +229,7 @@ public class ContentItemdao {
 			connection = dataSource.getConnection();
 
 			String query = "select count(*) from comment_item where item_i_num = ? and ic_delete is null";
-			
+
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, Integer.parseInt(itemInfo_iNo));
 			resultset = preparedStatement.executeQuery();
@@ -259,68 +260,37 @@ public class ContentItemdao {
 		}
 		return count;
 	}
-	
-		// 상세페이지 리뷰 수정하기 클릭시 상세페이지
-		public ContentItemdto commentContent(String ic_Num) {
-			ContentItemdto dto = null;
-			Connection connection = null;
-			PreparedStatement preparedStatement = null;
-			ResultSet resultset = null;
 
-			try {
-				connection = dataSource.getConnection();
-
-				String query = "SELECT * FROM comment_item where ic_num = ?";
-
-				preparedStatement = connection.prepareStatement(query);
-				preparedStatement.setInt(1, Integer.parseInt(ic_Num));
-				resultset = preparedStatement.executeQuery();
-
-				if (resultset.next()) {
-					int ic_num = resultset.getInt("ic_num");
-					String ic_content = resultset.getString("ic_content");
-					dto = new ContentItemdto(ic_num, ic_content);
-
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					// 정리 다시 거꾸로 정리해주는것
-					if (resultset != null)
-						resultset.close();
-					if (preparedStatement != null)
-						preparedStatement.close();
-					if (connection != null)
-						connection.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-
-				}
-			}
-			return dto;
-		}
-
-	// 게시물 리뷰 수정
-	public void commentModiey(String ccNo, String cContent) {
+	// 상세페이지 리뷰 수정하기 클릭시 상세페이지
+	public ContentItemdto commentContent(String ic_Num) {
+		ContentItemdto dto = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
+		ResultSet resultset = null;
 
 		try {
 			connection = dataSource.getConnection();
-			String query = "update	comment_item set ic_content = ?, ic_edit = now() where ic_num = ?";
-			preparedStatement = connection.prepareStatement(query);
 
-			preparedStatement.setString(1, cContent);
-			preparedStatement.setInt(2, Integer.parseInt(ccNo));
-			preparedStatement.executeUpdate();
+			String query = "SELECT * FROM comment_item where ic_num = ?";
+
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, Integer.parseInt(ic_Num));
+			resultset = preparedStatement.executeQuery();
+
+			if (resultset.next()) {
+				int ic_num = resultset.getInt("ic_num");
+				String ic_content = resultset.getString("ic_content");
+				dto = new ContentItemdto(ic_num, ic_content);
+
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				// 정리 다시 거꾸로 정리해주는것
+				if (resultset != null)
+					resultset.close();
 				if (preparedStatement != null)
 					preparedStatement.close();
 				if (connection != null)
@@ -330,10 +300,49 @@ public class ContentItemdao {
 
 			}
 		}
+		return dto;
+	}
+
+	// 게시물 리뷰 수정
+	public String commentModiey(String ccNo, String cContent) {
+		String result = "false";
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+
+		try {
+			connection = dataSource.getConnection();
+			String query = "update comment_item set ic_content = ?, ic_edit = now() where ic_num = ?";
+			preparedStatement = connection.prepareStatement(query);
+
+			preparedStatement.setString(1, cContent);
+			preparedStatement.setInt(2, Integer.parseInt(ccNo));
+			preparedStatement.executeUpdate();
+			result = "true";
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(result);
+		} finally {
+			try {
+				// 정리 다시 거꾸로 정리해주는것
+				if (connection != null)
+					connection.close();
+				if (preparedStatement != null)
+					preparedStatement.close();
+				System.out.println("< rs, psmt, conn close success>");
+			} catch (Exception e) {
+				e.printStackTrace();
+				result = "false";
+				System.out.println("< rs, psmt, conn close Fail>");
+			}
+		}
+		return result;
 	}
 
 	// 게시물 리뷰 삭제
-	public void commentDelete(String ic_num) {
+	public String commentDelete(String ic_num) {
+
+		String result = "false";
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -344,7 +353,7 @@ public class ContentItemdao {
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setInt(1, Integer.parseInt(ic_num));
 			preparedStatement.executeUpdate();
-
+			result = "true";
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -356,8 +365,9 @@ public class ContentItemdao {
 					connection.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-
+				result = "false";
 			}
 		}
+		return result;
 	}
 }

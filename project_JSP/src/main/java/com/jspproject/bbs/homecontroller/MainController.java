@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.command.Command;
+import com.jspproject.bbs.command.CommentContentCommand;
 import com.jspproject.bbs.command.CommentDeleteCommand;
 import com.jspproject.bbs.command.CommentModifyCommand;
 import com.jspproject.bbs.command.CommentViewCommend;
@@ -175,9 +176,15 @@ public class MainController extends HttpServlet {
 			command.execute(request, response, session);
 			viewPage = "ContentViewItem.do"; // 실행할 jsp파일
 			break;
+		// Item - 상세페이지 댓글 불러오기 0521 이승연
+		case ("/CommentContentItem.do"):
+			command = new CommentContentCommand();
+			command.execute(request, response, session);
+			viewPage = "CommentContentView.jsp"; // 실행할 jsp파일
+			break;
 		// Item - 상세페이지 댓글 수정하기 0521 이승연
 		case ("/CommentModifyItem.do"):
-			command = new CommentViewCommend();
+			command = new CommentModifyCommand();
 			command.execute(request, response, session);
 			viewPage = "CommentModifyView.jsp"; // 실행할 jsp파일
 			break;

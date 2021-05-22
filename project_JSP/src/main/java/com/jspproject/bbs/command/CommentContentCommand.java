@@ -5,21 +5,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.jspproject.bbs.dao.ContentItemdao;
+import com.jspproject.bbs.dto.ContentItemdto;
 
-
-public class CommentModifyCommand implements Command {
+public class CommentContentCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		// TODO Auto-generated method stub
 		String ccNo =request.getParameter("ccNo");
-		String cContent = request.getParameter("cContent");
 		
 		ContentItemdao dao = new ContentItemdao();
-		String result = dao.commentModiey(ccNo, cContent);
+		ContentItemdto dto = dao.commentContent(ccNo);
 		
-		request.setAttribute("result", result);
-		
+		request.setAttribute("commentcontent_view", dto);
 	}
 
 }

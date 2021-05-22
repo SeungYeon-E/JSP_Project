@@ -16,4 +16,6 @@
     <fullyQualifiedTypeName name="com.jspproject.bbs.dto.ContentItemdto"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.CommentDeleteCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.CommentViewCommend"/>
 </qualifiedTypeNameHistroy>
