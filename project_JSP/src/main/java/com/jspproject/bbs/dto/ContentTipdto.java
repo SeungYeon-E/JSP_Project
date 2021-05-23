@@ -18,12 +18,12 @@ public class ContentTipdto {
 	
 	
 	// 굳이 이미지 가져올 필요가 없어
-	String iImg;
+	String t_image;
 	// int pLike = resultset.getInt("pLike");// Like수없나요?
 	
 	
 	
-	public ContentTipdto(int t_num, String name, String user_email, String t_title, String t_content, String iImg, String t_category,
+	public ContentTipdto(int t_num, String name, String user_email, String t_title, String t_content, String t_image, String t_category,
 		int t_hits, Date tw_regist) {
 	super();
 	this.t_num = t_num;
@@ -31,7 +31,7 @@ public class ContentTipdto {
 	this.user_email = user_email;
 	this.t_title = t_title;
 	this.t_content = t_content;
-	this.iImg = iImg;
+	this.t_image = t_image;
 	this.t_category = t_category;
 	this.t_hits = t_hits;
 	this.tw_regist = tw_regist;
@@ -121,12 +121,12 @@ public class ContentTipdto {
 		this.t_content = t_content;
 	}
 
-	public String getiImg() {
-		return iImg;
+	public String gett_image() {
+		return t_image;
 	}
 
-	public void setiImg(String iImg) {
-		this.iImg = iImg;
+	public void sett_image(String iImg) {
+		this.t_image = iImg;
 	}
 
 	public String gett_category() {

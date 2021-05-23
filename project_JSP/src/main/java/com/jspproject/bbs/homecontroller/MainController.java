@@ -17,6 +17,18 @@ import com.jspproject.bbs.command.CommentModifyCommand;
 import com.jspproject.bbs.command.CommentWriteCommand;
 import com.jspproject.bbs.command.ContentItemCommand;
 import com.jspproject.bbs.command.ContentItemDeleteCommand;
+import com.jspproject.bbs.command.ContentNoticeCommand;
+import com.jspproject.bbs.command.ContentNoticeDeleteCommand;
+import com.jspproject.bbs.command.ContentTipCommand;
+import com.jspproject.bbs.command.ContentTipDeleteCommand;
+import com.jspproject.bbs.command.NoticeCommentContentCommand;
+import com.jspproject.bbs.command.NoticeCommentDeleteCommand;
+import com.jspproject.bbs.command.NoticeCommentModifyCommand;
+import com.jspproject.bbs.command.NoticeCommentWriteCommand;
+import com.jspproject.bbs.command.TipCommentContentCommand;
+import com.jspproject.bbs.command.TipCommentDeleteCommand;
+import com.jspproject.bbs.command.TipCommentModifyCommand;
+import com.jspproject.bbs.command.TipCommentWriteCommand;
 import com.jspproject.bbs.command.UserLoginCommand;
 import com.jspproject.bbs.command.UserRegisterCommand;
 
@@ -198,47 +210,90 @@ public class MainController extends HttpServlet {
 			break;
 		/*
 		 * ----------------------------- 
-		 * 21.05.23 seungyeon Item 상세페이지 
+		 * 21.05.23 seungyeon tip 상세페이지 
 		 * 현재 userEmail 변수 선언해서 진행중
 		 *  -> 상세페이지 게시물 삭제하기 list로 돌아가기 변경해야함
 		 *   -----------------------------
 		 */	
 		// tip - 상세페이지 불러오기 0523 이승연
-//		case ("/ContentViewTip.do"): // 실행시 ~~.do사용
-//			command = new ContentTipCommand(); // 커맨드(메소드)적기
-//			command.execute(request, response, session);
-//			viewPage = "ContentViewTip.jsp"; // 실행할 jsp파일
-//			break;
-//		// tip - 상세페이지 게시물 삭제하기 0518 이승연
-//		case ("/ContentViewTipdelete.do"):
-//			command = new ContentTipDeleteCommand();
-//			command.execute(request, response, session);
-//			viewPage = "ContentDeleteView.jsp"; // 실행할 jsp파일
-//			break;
-//		// tip - 상세페이지 댓글입력 0518 이승연
-//		case ("/CommentWriteTip.do"): // 실행시 ~~.do사용
-//			command = new TipCommentWriteCommand(); // 커맨드(메소드)적기
-//			command.execute(request, response, session);
-//			viewPage = "CommentWriteView.jsp"; // 실행할 jsp파일
-//			break;
-//		// tip - 상세페이지 댓글 불러오기 0521 이승연
-//		case ("/CommentContentTip.do"):
-//			command = new TipCommentContentCommand();
-//			command.execute(request, response, session);
-//			viewPage = "CommentContentView.jsp"; // 실행할 jsp파일
-//			break;
-//		// tip - 상세페이지 댓글 수정하기 0521 이승연
-//		case ("/CommentModifyTip.do"):
-//			command = new TipCommentModifyCommand();
-//			command.execute(request, response, session);
-//			viewPage = "CommentModifyView.jsp"; // 실행할 jsp파일
-//			break;
-//		// tip - 상세페이지 댓글 삭제하기 0521 이승연
-//		case ("/CommentDeleteTip.do"):
-//			command = new TipCommentDeleteCommand();
-//			command.execute(request, response, session);
-//			viewPage = "CommentDeleteView.jsp"; // 실행할 jsp파일
-//			break;
+		case ("/ContentViewTip.do"): // 실행시 ~~.do사용
+			command = new ContentTipCommand(); // 커맨드(메소드)적기
+			command.execute(request, response, session);
+			viewPage = "ContentViewTip.jsp"; // 실행할 jsp파일
+			break;
+		// tip - 상세페이지 게시물 삭제하기 0518 이승연
+		case ("/ContentViewTipdelete.do"):
+			command = new ContentTipDeleteCommand();
+			command.execute(request, response, session);
+			viewPage = "ContentDeleteView.jsp"; // 실행할 jsp파일
+			break;
+		// tip - 상세페이지 댓글입력 0518 이승연
+		case ("/TipCommentWrite.do"): // 실행시 ~~.do사용
+			command = new TipCommentWriteCommand(); // 커맨드(메소드)적기
+			command.execute(request, response, session);
+			viewPage = "CommentWriteView.jsp"; // 실행할 jsp파일
+			break;
+		// tip - 상세페이지 댓글 불러오기 0521 이승연
+		case ("/TipCommentContent.do"):
+			command = new TipCommentContentCommand();
+			command.execute(request, response, session);
+			viewPage = "TipCommentContentView.jsp"; // 실행할 jsp파일
+			break;
+		// tip - 상세페이지 댓글 수정하기 0521 이승연
+		case ("/TipCommentModify.do"):
+			command = new TipCommentModifyCommand();
+			command.execute(request, response, session);
+			viewPage = "CommentModifyView.jsp"; // 실행할 jsp파일
+			break;
+		// tip - 상세페이지 댓글 삭제하기 0521 이승연
+		case ("/TipCommentDelete.do"):
+			command = new TipCommentDeleteCommand();
+			command.execute(request, response, session);
+			viewPage = "CommentDeleteView.jsp"; // 실행할 jsp파일
+			break;
+		/*
+		 * ----------------------------- 
+		 * 21.05.23 seungyeon notice 상세페이지 
+		 * 현재 userEmail 변수 선언해서 진행중
+		 *  -> 상세페이지 게시물 삭제하기 list로 돌아가기 변경해야함
+		 *   -----------------------------
+		 */	
+		// notice - 상세페이지 불러오기 0523 이승연
+		case ("/ContentViewNotice.do"): // 실행시 ~~.do사용
+			command = new ContentNoticeCommand(); // 커맨드(메소드)적기
+			command.execute(request, response, session);
+			viewPage = "ContentViewNotice.jsp"; // 실행할 jsp파일
+			break;
+		// notice - 상세페이지 게시물 삭제하기 0518 이승연
+		case ("/ContentViewNoticedelete.do"):
+			command = new ContentNoticeDeleteCommand();
+			command.execute(request, response, session);
+			viewPage = "ContentDeleteView.jsp"; // 실행할 jsp파일
+			break;
+		// notice - 상세페이지 댓글입력 0518 이승연
+		case ("/NoticeCommentWrite.do"): // 실행시 ~~.do사용
+			command = new NoticeCommentWriteCommand(); // 커맨드(메소드)적기
+			command.execute(request, response, session);
+			viewPage = "CommentWriteView.jsp"; // 실행할 jsp파일
+			break;
+		// notice - 상세페이지 댓글 불러오기 0521 이승연
+		case ("/NoticeCommentContent.do"):
+			command = new NoticeCommentContentCommand();
+			command.execute(request, response, session);
+			viewPage = "NoticeCommentContentView.jsp"; // 실행할 jsp파일
+			break;
+		// notice - 상세페이지 댓글 수정하기 0521 이승연
+		case ("/NoticeCommentModify.do"):
+			command = new NoticeCommentModifyCommand();
+			command.execute(request, response, session);
+			viewPage = "CommentModifyView.jsp"; // 실행할 jsp파일
+			break;
+		// notice - 상세페이지 댓글 삭제하기 0521 이승연
+		case ("/NoticeCommentDelete.do"):
+			command = new NoticeCommentDeleteCommand();
+			command.execute(request, response, session);
+			viewPage = "CommentDeleteView.jsp"; // 실행할 jsp파일
+			break;
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

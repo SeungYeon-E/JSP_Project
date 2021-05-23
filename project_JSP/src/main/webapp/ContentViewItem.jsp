@@ -58,13 +58,10 @@
 		}
 
 		var modifyContent = document.getElementById("modifyContent");
+		var deletecontent = document.getElementById("deletecontent");
 		var template = '${content_view.user_email}';
 		if (myEmail != template || myEmail == 'null') {
 			modifyContent.style.display = "none";
-		}
-
-		var deletecontent = document.getElementById("deletecontent");
-		if (myEmail != template || myEmail == 'null') {
 			deletecontent.style.display = "none";
 		}
 		
@@ -76,19 +73,6 @@
 		}
 	}
 
-	/* 댓글 */
-	/* function writeComment() {
-		var form = document.commentWrite;
-		var i_num = document.getElementById("i_num").value;
-		var url = "CommentContentItem.do?ic_num=" + ic_num + "&i_num=" + i_num;
-		//Empty Check
-		if (form.ic_content.value == "") {
-			alert("comment를 입력하세요!");
-			form.ic_content.focus();
-			return false;
-		}
-		form.submit();
-	} */
 	/* 댓글 */
 	function writeComment() {
 		var form = document.commentWrite;
@@ -125,6 +109,11 @@
 	}
 </script>
 <style>
+a:link {
+	color: black;
+	text-decoration: none;
+}
+
 table, th, td {
 	border: 1px solid #bcbcbc;
 	width: 1200px;
