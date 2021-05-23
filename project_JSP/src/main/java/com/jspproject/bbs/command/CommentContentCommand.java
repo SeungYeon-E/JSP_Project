@@ -11,10 +11,10 @@ public class CommentContentCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		String ccNo =request.getParameter("ccNo");
+		String ic_num =request.getParameter("ic_num");
 		
 		ContentItemdao dao = new ContentItemdao();
-		ContentItemdto dto = dao.commentContent(ccNo);
+		ContentItemdto dto = dao.commentContent(ic_num);
 		
 		request.setAttribute("commentcontent_view", dto);
 	}

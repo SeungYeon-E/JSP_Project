@@ -7,14 +7,23 @@
 	function modifyComment() {
 		var form = document.commenttext;
 		//Empty Check
-		if (form.cContent.value.trim() == "") {
+		if (form.ic_content.value.trim() == "") {
 			alert("comment를 입력하세요!");
-			form.cContent.focus();
+			form.ic_content.focus();
 			return false;
 		}
 		form.submit();
 	}
 </script>
+<style>
+.container {
+	text-align: center;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform : translate(-50%, -50%);
+}
+</style>
 <head>
 <meta charset="UTF-8">
 <title>comment modify</title>
@@ -24,10 +33,15 @@
 <body>
 	<form action="CommentModifyItem.do" name="commenttext" method="post">
 		<div class="container">
-			<input type="hidden" name="ccNo" size="20" value="${commentcontent_view.ccNo}">
-			<input type="text" name="cContent" size="50" value="${commentcontent_view.cContent}">
-			<button type="button" onclick="modifyComment();" class="btn btn-primary pull-right">수정하기</button>
-			<button type="reset" class="btn btn-primary pull-right">되돌리기</button>
+			<div>
+				<input type="hidden" name="ic_num" size="20" value="${commentcontent_view.ic_num}">
+				<input type="text" name="ic_content" size="50" value="${commentcontent_view.ic_content}" class="form-control">
+			</div>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<div>
+				<button type="button" onclick="modifyComment();" class="btn btn-primary pull-right">수정하기</button>
+				<button type="reset" class="btn btn-primary pull-right">되돌리기</button>
+			</div>
 		</div>
 	</form>
 </body>

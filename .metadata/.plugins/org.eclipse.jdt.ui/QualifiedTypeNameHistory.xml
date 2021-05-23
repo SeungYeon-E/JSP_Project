@@ -13,9 +13,10 @@
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.ContentItemDeleteCommand"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.CommentModifyCommand"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.dao.ContentItemdao"/>
-    <fullyQualifiedTypeName name="com.jspproject.bbs.dto.ContentItemdto"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.CommentDeleteCommand"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.CommentViewCommend"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.dto.ContentItemdto"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.CommentContentCommand"/>
 </qualifiedTypeNameHistroy>

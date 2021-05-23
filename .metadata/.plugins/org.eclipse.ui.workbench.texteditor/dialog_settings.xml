@@ -6,13 +6,14 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="commentList"/>
+		<item key="selection" value="list-count success"/>
 		<list key="findhistory">
+			<item value="list-count success"/>
+			<item value="deleteContent"/>
 			<item value="commentList"/>
 			<item value="contentemail"/>
 			<item value="deletecontent"/>
 			<item value="comment"/>
-			<item value="deleteContent"/>
 			<item value="btnwritecomment"/>
 			<item value="bbb"/>
 			<item value="Mail"/>
@@ -22,7 +23,6 @@
 			<item value="Content"/>
 			<item value="content"/>
 			<item value="Sys"/>
-			<item value="sys"/>
 		</list>
 		<list key="replacehistory">
 		</list>

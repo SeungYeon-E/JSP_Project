@@ -11,7 +11,7 @@ public class CommentWriteCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
-		String bId = request.getParameter("bId");
+		String i_num = request.getParameter("i_num");
 		
 		/* 
 	 	-----------------------------
@@ -21,13 +21,13 @@ public class CommentWriteCommand implements Command {
 	 	-----------------------------
 		 */
 		
-//		String userEmail = (String) session.getAttribute("email");
-		String userEmail = "aaa@naver.com";
-		
-		String ccomment = request.getParameter("ccomment");
-		
+//		String myEmail = (String) session.getAttribute("email");
+		String myEmail = "aaa@naver.com";
+		String ic_content = request.getParameter("ic_content");
 		ContentItemdao dao = new ContentItemdao();
-		dao.commentWrite(bId, userEmail, ccomment);
+		String result = dao.commentWrite(i_num, myEmail, ic_content);
+
+		request.setAttribute("result", result);
 		
 	}
 	

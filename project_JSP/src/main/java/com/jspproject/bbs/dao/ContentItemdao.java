@@ -25,7 +25,7 @@ public class ContentItemdao {
 	}
 
 	// 게시물 클릭시 상세페이지
-	public ContentItemdto contentView(String strID) {
+	public ContentItemdto contentView(String stri_num) {
 		ContentItemdto dto = null;
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -38,27 +38,26 @@ public class ContentItemdao {
 			String query = "select * from item i, write_item w, user u where u.email = w.user_email  and i.i_num = w.item_i_num and i.i_num = ?";
 
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, Integer.parseInt(strID));
+			preparedStatement.setInt(1, Integer.parseInt(stri_num));
 			resultset = preparedStatement.executeQuery();
 
 //				System.out.println(resultset);
 			if (resultset.next()) {
-				int iNo = resultset.getInt("I_NUM");
-				String userEmail = resultset.getString("USER_EMAIL");
-				String userName = resultset.getString("NAME");
-				String iTitle = resultset.getString("I_TITLE");
-				String iContent = resultset.getString("I_CONTENT");
-				String iImg = resultset.getString("I_IMAGE");
+				int i_num = resultset.getInt("I_NUM");
+				String user_email = resultset.getString("USER_EMAIL");
+				String name = resultset.getString("NAME");
+				String i_title = resultset.getString("I_TITLE");
+				String i_content = resultset.getString("I_CONTENT");
+				String i_image = resultset.getString("I_IMAGE");
 				// 굳이 이미지 가져올 필요가 없어
-				String iCategory = resultset.getString("I_CATEGORY");
-				int iHits = resultset.getInt("i_hits");
+				String i_category = resultset.getString("I_CATEGORY");
+				int i_hits = resultset.getInt("i_hits");
 //				int pLike = resultset.getInt("pLike");// Like수없나요?
-				Date wRegistDate = resultset.getDate("iw_regist");
+				Date iw_regist = resultset.getDate("iw_regist");
 				// 이미지 출력을 위함
-				iContent = imgcontent(iContent, iImg);
+				i_content = imgcontent(i_content, i_image);
 //				System.out.println(pContent);
-				dto = new ContentItemdto(iNo, userName, userEmail, iTitle, iContent, iImg, iCategory, iHits,
-						wRegistDate);
+				dto = new ContentItemdto(i_num, name, user_email, i_title, i_content, i_image, i_category, i_hits, iw_regist);
 
 			}
 
@@ -98,7 +97,7 @@ public class ContentItemdao {
 	}
 
 	// 게시물 삭제!!
-	public String contentDelete(String strID) {
+	public String contentDelete(String stri_num) {
 		String result = "false";
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -107,7 +106,7 @@ public class ContentItemdao {
 			connection = dataSource.getConnection();
 			String query = "update write_item set iw_delete = now() where item_i_num = ?";
 			preparedStatement = connection.prepareStatement(query);
-			preparedStatement.setInt(1, Integer.parseInt(strID));
+			preparedStatement.setInt(1, Integer.parseInt(stri_num));
 			preparedStatement.executeUpdate();
 			result = "true";
 		} catch (Exception e) {
@@ -128,7 +127,8 @@ public class ContentItemdao {
 	}
 
 	// 게시물 리뷰 작성
-	public void commentWrite(String itemInfo_iNo, String userid, String cContent) {
+	public String commentWrite(String i_num, String user_email, String ic_content) {
+		String result = "false";
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
@@ -138,12 +138,12 @@ public class ContentItemdao {
 			String query = "insert into comment_item (user_email, item_i_num, ic_content, ic_regist) values (?,?,?,now())";
 			preparedStatement = connection.prepareStatement(query);
 
-			preparedStatement.setString(1, userid);
-			preparedStatement.setString(2, itemInfo_iNo);
-			preparedStatement.setString(3, cContent);
+			preparedStatement.setString(1, user_email);
+			preparedStatement.setString(2, i_num);
+			preparedStatement.setString(3, ic_content);
 
 			preparedStatement.executeUpdate();
-
+			result = "true";
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -155,13 +155,14 @@ public class ContentItemdao {
 					connection.close();
 			} catch (Exception e) {
 				e.printStackTrace();
-
+				result = "false";
 			}
 		}
+		return result;
 	}
 
 	// 게시물 리뷰 Lsit
-	public ArrayList<ContentItemdto> commentSelect(String bId, int start, int pageCnt) {
+	public ArrayList<ContentItemdto> commentSelect(String i_num, int start, int pageCnt) {
 		ArrayList<ContentItemdto> dtos = new ArrayList<ContentItemdto>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -176,7 +177,7 @@ public class ContentItemdao {
 
 			preparedStatement = connection.prepareStatement(query);
 			// 0을 나누면 에러가 발생하므로 예외처
-			preparedStatement.setInt(1, Integer.parseInt(bId));
+			preparedStatement.setInt(1, Integer.parseInt(i_num));
 			if (offset == 0) {
 				preparedStatement.setInt(2, offset);
 			} else {
@@ -187,13 +188,13 @@ public class ContentItemdao {
 
 //				System.out.println(resultset);
 			while (resultset.next()) {
-				int ccNo = resultset.getInt("ic_num");
-				String username = resultset.getString("name");
-				String userEmail = resultset.getString("user_email");
-				String cContent = resultset.getString("ic_content");
-				Date cRegistDate = resultset.getDate("ic_regist");
+				int ic_num = resultset.getInt("ic_num");
+				String name = resultset.getString("name");
+				String user_email = resultset.getString("user_email");
+				String ic_content = resultset.getString("ic_content");
+				Date ic_regist = resultset.getDate("ic_regist");
 
-				ContentItemdto dto = new ContentItemdto(ccNo, username, userEmail, cContent, cRegistDate);
+				ContentItemdto dto = new ContentItemdto(ic_num, name, user_email, ic_content, ic_regist);
 				dtos.add(dto);
 //					System.out.println("cContent="+cContent);
 			}
@@ -304,7 +305,7 @@ public class ContentItemdao {
 	}
 
 	// 게시물 리뷰 수정
-	public String commentModiey(String ccNo, String cContent) {
+	public String commentModiey(String ic_Num, String ic_content) {
 		String result = "false";
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -314,8 +315,8 @@ public class ContentItemdao {
 			String query = "update comment_item set ic_content = ?, ic_edit = now() where ic_num = ?";
 			preparedStatement = connection.prepareStatement(query);
 
-			preparedStatement.setString(1, cContent);
-			preparedStatement.setInt(2, Integer.parseInt(ccNo));
+			preparedStatement.setString(1, ic_content);
+			preparedStatement.setInt(2, Integer.parseInt(ic_Num));
 			preparedStatement.executeUpdate();
 			result = "true";
 			

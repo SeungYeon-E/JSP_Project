@@ -1,21 +1,20 @@
 package com.jspproject.bbs.dto;
 
 import java.sql.Date;
-import java.sql.Timestamp;
 
 public class ContentItemdto {
-	int iNo;
-	String userName;
-	String userEmail;
-	String iTitle;
-	String iContent;
-	String iCategory;
-	int iHits;
-	Date wRegistDate;
+	int i_num;
+	String name;
+	String user_email;
+	String i_title;
+	String i_content;
+	String i_category;
+	int i_hits;
+	Date iw_regist;
 	
-	int ccNo;
-	String cContent;
-	Date cRegistDate;
+	int ic_num;
+	String ic_content;
+	Date ic_regist;
 	
 	
 	// 굳이 이미지 가져올 필요가 없어
@@ -24,33 +23,33 @@ public class ContentItemdto {
 	
 	
 	
-	public ContentItemdto(int iNo, String userName, String userEmail, String iTitle, String iContent, String iImg, String iCategory,
-		int iHits, Date wRegistDate) {
+	public ContentItemdto(int i_num, String name, String user_email, String i_title, String i_content, String iImg, String i_category,
+		int i_hits, Date iw_regist) {
 	super();
-	this.iNo = iNo;
-	this.userName = userName;
-	this.userEmail = userEmail;
-	this.iTitle = iTitle;
-	this.iContent = iContent;
+	this.i_num = i_num;
+	this.name = name;
+	this.user_email = user_email;
+	this.i_title = i_title;
+	this.i_content = i_content;
 	this.iImg = iImg;
-	this.iCategory = iCategory;
-	this.iHits = iHits;
-	this.wRegistDate = wRegistDate;
+	this.i_category = i_category;
+	this.i_hits = i_hits;
+	this.iw_regist = iw_regist;
 }
 
-	public ContentItemdto(int ccNo, String cContent) {
+	public ContentItemdto(int ic_num, String ic_content) {
 		super();
-		this.ccNo = ccNo;
-		this.cContent = cContent;
+		this.ic_num = ic_num;
+		this.ic_content = ic_content;
 	}
 
-	public ContentItemdto(int ccNo, String userName, String userEmail, String cContent, Date cRegistDate) {
+	public ContentItemdto(int ic_num, String name, String user_email, String ic_content, Date ic_regist) {
 		super();
-		this.ccNo = ccNo;
-		this.userName = userName;
-		this.userEmail = userEmail;
-		this.cContent = cContent;
-		this.cRegistDate = cRegistDate;
+		this.ic_num = ic_num;
+		this.name = name;
+		this.user_email = user_email;
+		this.ic_content = ic_content;
+		this.ic_regist = ic_regist;
 	}
 
 	public ContentItemdto() {
@@ -58,68 +57,68 @@ public class ContentItemdto {
 	}
 	
 
-	public String getUserName() {
-		return userName;
+	public String getname() {
+		return name;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
-	public int getCcNo() {
-		return ccNo;
+	public int getic_num() {
+		return ic_num;
 	}
 
-	public void setCcNo(int ccNo) {
-		this.ccNo = ccNo;
+	public void setic_num(int ic_num) {
+		this.ic_num = ic_num;
 	}
 
-	public String getcContent() {
-		return cContent;
+	public String getic_content() {
+		return ic_content;
 	}
 
-	public void setcContent(String cContent) {
-		this.cContent = cContent;
+	public void setic_content(String ic_content) {
+		this.ic_content = ic_content;
 	}
 
-	public Date getcRegistDate() {
-		return cRegistDate;
+	public Date getic_regist() {
+		return ic_regist;
 	}
 
-	public void setcRegistDate(Date cRegistDate) {
-		this.cRegistDate = cRegistDate;
+	public void setic_regist(Date ic_regist) {
+		this.ic_regist = ic_regist;
 	}
 
-	public int getiNo() {
-		return iNo;
+	public int geti_num() {
+		return i_num;
 	}
 
-	public void setiNo(int iNo) {
-		this.iNo = iNo;
+	public void seti_num(int i_num) {
+		this.i_num = i_num;
 	}
 
-	public String getUserEmail() {
-		return userEmail;
+	public String getuser_email() {
+		return user_email;
 	}
 
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
+	public void setuser_email(String user_email) {
+		this.user_email = user_email;
 	}
 
-	public String getiTitle() {
-		return iTitle;
+	public String geti_title() {
+		return i_title;
 	}
 
-	public void setiTitle(String iTitle) {
-		this.iTitle = iTitle;
+	public void seti_title(String i_title) {
+		this.i_title = i_title;
 	}
 
-	public String getiContent() {
-		return iContent;
+	public String geti_content() {
+		return i_content;
 	}
 
-	public void setiContent(String iContent) {
-		this.iContent = iContent;
+	public void seti_content(String i_content) {
+		this.i_content = i_content;
 	}
 
 	public String getiImg() {
@@ -130,28 +129,28 @@ public class ContentItemdto {
 		this.iImg = iImg;
 	}
 
-	public String getiCategory() {
-		return iCategory;
+	public String geti_category() {
+		return i_category;
 	}
 
-	public void setiCategory(String iCategory) {
-		this.iCategory = iCategory;
+	public void seti_category(String i_category) {
+		this.i_category = i_category;
 	}
 
-	public int getiHits() {
-		return iHits;
+	public int geti_hits() {
+		return i_hits;
 	}
 
-	public void setiHits(int iHits) {
-		this.iHits = iHits;
+	public void seti_hits(int i_hits) {
+		this.i_hits = i_hits;
 	}
 
-	public Date getwRegistDate() {
-		return wRegistDate;
+	public Date getiw_regist() {
+		return iw_regist;
 	}
 
-	public void setwRegistDate(Date wRegistDate) {
-		this.wRegistDate = wRegistDate;
+	public void setiw_regist(Date iw_regist) {
+		this.iw_regist = iw_regist;
 	}
 	
 	

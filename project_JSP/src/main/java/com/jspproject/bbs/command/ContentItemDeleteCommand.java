@@ -11,10 +11,10 @@ public class ContentItemDeleteCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		// TODO Auto-generated method stub
-		String iNo =request.getParameter("iNo");
+		String i_num =request.getParameter("i_num");
 		
 		ContentItemdao dao = new ContentItemdao();
-		String result = dao.contentDelete(iNo);
+		String result = dao.contentDelete(i_num);
 		request.setAttribute("result", result);
 	}
 

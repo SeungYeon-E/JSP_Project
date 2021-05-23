@@ -19,11 +19,11 @@ public class ContentItemCommand implements Command {
 		// DB에서 전체정보 읽어서 attribute로 jsp에 전달하기
 		// 사용자가 요청한 페이지 번호 초기값은 가장 최신글을 보여주는 1
 		int requestPage = 1;
-		String bId = request.getParameter("bId");
+		String i_num = request.getParameter("i_num");
 		ContentItemdao dao = new ContentItemdao();
 
 		// 클릭된 게시물 상세페이지 보여주기
-		ContentItemdto dto = dao.contentView(bId);
+		ContentItemdto dto = dao.contentView(i_num);
 		request.setAttribute("content_view", dto);
 
 		// 최초 목록 진입시 page값을 넘겨주지 않음 -> 초기값인 1페이지 목록을 보여줌
@@ -35,13 +35,13 @@ public class ContentItemCommand implements Command {
 		}
 
 		// 반환되는 총 튜플의 수
-		int countedTuple = dao.selectCommnetCnt(bId);
+		int countedTuple = dao.selectCommnetCnt(i_num);
 		// 페이지 목록 (1...n)
 		ArrayList<Integer> pageList = calcNumOfPage(countedTuple);
 		// 페이지 목록을 세션에 담는다. *list에 진입하면 무조건 세션이 갱신되므로 새 글이 생겨도 최신화가 된다.
 		session.setAttribute("pageList", pageList);
 		// 해당 페이지에 알맞은 번호의 게시글
-		ArrayList<ContentItemdto> dtos = dao.commentSelect(bId, requestPage, numOfTuplesPerPage);
+		ArrayList<ContentItemdto> dtos = dao.commentSelect(i_num, requestPage, numOfTuplesPerPage);
 		// request에 게시글들을 태워 보낸다.
 		request.setAttribute("comment_view", dtos);
 
