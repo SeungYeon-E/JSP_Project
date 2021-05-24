@@ -7,22 +7,10 @@
 <html>
 <script type="text/javascript">
 	
-	/* 로그인된 아이디 세션값받기 */
-	/* 
-	 	-----------------------------
-	 	21.05.21 seungyeon
-	 	****현재 myEmail 변수 선언해서 진행중
-	 	-> 추후 세션으로 받아와서 바꿀 것.
-	 	수정하기와 목록으로가는것 수정해야함
-	 	이름에 하이퍼링크준것도 수정해야함
-	 	-----------------------------
-	*/
-	<%-- var myEmail = '<%=(String) session.getAttribute("email")%>'; --%>
-	<%-- var Admin = '<%=(String) session.getAttribute("admin")%>'; --%>
-	/* var myEmail = sessionStorage.getItem("email");*/
-	/* var Admin = sessionStorage.getItem("admin");*/
-	var myEmail = 'aaa@naver.com';
-	var Admin = '0';
+	var myEmail = '<%=(String) session.getAttribute("email")%>';
+	var Admin = '<%=(String) session.getAttribute("admin")%>';
+	console.log("myEmail=" + myEmail);
+
 	console.log("myEmail=" + myEmail);
 
 	/* 게시물 삭제 */
@@ -220,6 +208,7 @@ div {
 												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 												<button type="button" onclick="deleteComment(this.id);" name="deletecomment" id="${comment.nc_num}"
 													value="${comment.nc_num}" class="btn btn-primary pull-right">삭제하기</button>
+											</td>
 										</tr>
 									</c:forEach>
 									<tr>

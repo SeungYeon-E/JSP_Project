@@ -16,12 +16,7 @@ public class ContentTipdto {
 	String tc_content;
 	Date tc_regist;
 	
-	
-	// 굳이 이미지 가져올 필요가 없어
 	String t_image;
-	// int pLike = resultset.getInt("pLike");// Like수없나요?
-	
-	
 	
 	public ContentTipdto(int t_num, String name, String user_email, String t_title, String t_content, String t_image, String t_category,
 		int t_hits, Date tw_regist) {

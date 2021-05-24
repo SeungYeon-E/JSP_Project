@@ -16,14 +16,9 @@ public class ContentItemdto {
 	String ic_content;
 	Date ic_regist;
 	
+	String i_image;
 	
-	// 굳이 이미지 가져올 필요가 없어
-	String iImg;
-	// int pLike = resultset.getInt("pLike");// Like수없나요?
-	
-	
-	
-	public ContentItemdto(int i_num, String name, String user_email, String i_title, String i_content, String iImg, String i_category,
+	public ContentItemdto(int i_num, String name, String user_email, String i_title, String i_content, String i_image, String i_category,
 		int i_hits, Date iw_regist) {
 	super();
 	this.i_num = i_num;
@@ -31,7 +26,7 @@ public class ContentItemdto {
 	this.user_email = user_email;
 	this.i_title = i_title;
 	this.i_content = i_content;
-	this.iImg = iImg;
+	this.i_image = i_image;
 	this.i_category = i_category;
 	this.i_hits = i_hits;
 	this.iw_regist = iw_regist;
@@ -121,12 +116,12 @@ public class ContentItemdto {
 		this.i_content = i_content;
 	}
 
-	public String getiImg() {
-		return iImg;
+	public String geti_image() {
+		return i_image;
 	}
 
-	public void setiImg(String iImg) {
-		this.iImg = iImg;
+	public void seti_image(String i_image) {
+		this.i_image = i_image;
 	}
 
 	public String geti_category() {

@@ -54,7 +54,8 @@ public class ContentTipdao {
 //				int pLike = resultset.getInt("pLike");// Like수없나요?
 				Date tw_regist = resultset.getDate("tw_regist");
 				// 이미지 출력을 위함
-				t_content = imgcontent(t_content, t_image);
+//				t_content = imgcontent(t_content, t_image);
+				t_image = imgcontent(t_content, t_image);
 //				System.out.println(pContent);
 				dto = new ContentTipdto(t_num, name, user_email, t_title, t_content, t_image, t_category, t_hits, tw_regist);
 
@@ -83,16 +84,17 @@ public class ContentTipdao {
 	public String imgcontent(String content, String img) {
 
 		String[] arr_img = img.split(",");
-		// ,으로 구분하기, 필요없을거같아
+		// ,으로 구분하기, 필요없을거같아 배열 여러개 출력하고싶을때ㅜㅜㅜ
 		// 오늘 소개할 물건은\n<img_id=macBook.png>\n<img_id=macBook2.png>\n입니다.
-		// 오늘 소개할
-		// 물건은\n<img_src=\"http://localhost:8080/DeveloperWeb/img/macBook.png>\n<img_id=macBook2.png\">\n입니다.
+		// 오늘 소개할 물건은\n<img_src=\"http://localhost:8080/DeveloperWeb/img/macBook.png>\n<img_id=macBook2.png\">\n입니다.
 		// 변경해준다
-		content = content.replaceAll("img_id=", "img src=\"http://localhost:8080/DeveloperWeb/img/");
-		content = content.replaceAll("png", "png\"");
-		content = content.replaceAll("jpg", "jpg\"");
-
-		return content;
+//		content = content.replaceAll("img_id=", "img src=\"http://localhost:8080/DeveloperWeb/img/");
+//		content = content.replaceAll("png", "png\"");
+//		content = content.replaceAll("jpg", "jpg\"");
+		img = "<img src=\"http://localhost:8080/project_JSP/img/"+img;
+		img = img.replaceAll("png", "png\">");
+		img = img.replaceAll("jpg", "jpg\">");
+		return img;
 	}
 
 	// 게시물 삭제!!
