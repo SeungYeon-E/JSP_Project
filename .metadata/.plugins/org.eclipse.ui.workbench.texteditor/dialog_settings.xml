@@ -6,25 +6,32 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="t_image"/>
+		<item key="selection" value="T_CATEGORY"/>
 		<list key="findhistory">
+			<item value="I_CATEGORY"/>
+			<item value="I_IMAGE"/>
+			<item value="I_CONTENT"/>
+			<item value="I_TITLE"/>
+			<item value="I_NUM"/>
+			<item value="Item"/>
+			<item value="T_IMAGE"/>
+			<item value="requestFilePath"/>
+			<item value="oldFilePath"/>
+			<item value="myEmail"/>
+			<item value="ServletContext"/>
 			<item value="t_image"/>
 			<item value="iImg"/>
 			<item value="Timestamp"/>
 			<item value="list"/>
-			<item value="courrentPage"/>
-			<item value="pageList"/>
-			<item value="ic_num"/>
-			<item value="ic_content"/>
-			<item value="i_num"/>
-			<item value="tc_num"/>
-			<item value="tc_content"/>
-			<item value="ContentItemdto"/>
-			<item value="ContentItemdao"/>
-			<item value="ContentTipdto"/>
-			<item value="t_num"/>
 		</list>
 		<list key="replacehistory">
+			<item value="T_CATEGORY"/>
+			<item value="T_IMAGE"/>
+			<item value="T_CONTENT"/>
+			<item value="T_TITLE"/>
+			<item value="T_NUM"/>
+			<item value=""/>
+			<item value="fileName"/>
 			<item value="i_image"/>
 			<item value="Date"/>
 			<item value="nc_num"/>
@@ -33,18 +40,11 @@
 			<item value="ContentNoticedto"/>
 			<item value="ContentNoticedao"/>
 			<item value="nc_regist"/>
-			<item value=""/>
-			<item value="nw_regist"/>
-			<item value="n_hits"/>
-			<item value="n_content"/>
-			<item value="n_title"/>
-			<item value="tc_num"/>
-			<item value="tc_content"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1134"/>
-		<item key="DIALOG_Y_ORIGIN" value="175"/>
+		<item key="DIALOG_X_ORIGIN" value="1016"/>
+		<item key="DIALOG_Y_ORIGIN" value="606"/>
 		<item key="DIALOG_WIDTH" value="288"/>
 		<item key="DIALOG_HEIGHT" value="313"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>

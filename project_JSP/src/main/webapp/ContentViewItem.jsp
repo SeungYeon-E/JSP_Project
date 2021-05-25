@@ -145,7 +145,7 @@ div {
 	<!-- 상세페이지 -->
 	<div class="container">
 		<br /> <br />
-		<form action="modify.do" method="post">
+		<form action="ItemInfoContent.do" method="post">
 			<h3 class="m-2">
 				<input type="hidden" name="i_num" id="i_num" value="${content_view.i_num}">
 				<b>${content_view.i_title}</b>
@@ -164,7 +164,7 @@ div {
 			</div>
 			<hr />
 			<div class="form-group">
-				<div class="m-2">${content_view.i_image}</div>
+				<div class="m-2"><img width="300" src="${content_view.i_image }" /></div>
 				<div class="m-2">${content_view.i_content}</div>
 			</div>
 		</form>

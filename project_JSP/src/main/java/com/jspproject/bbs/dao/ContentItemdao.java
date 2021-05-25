@@ -49,15 +49,10 @@ public class ContentItemdao {
 				String i_title = resultset.getString("I_TITLE");
 				String i_content = resultset.getString("I_CONTENT");
 				String i_image = resultset.getString("I_IMAGE");
-				// 굳이 이미지 가져올 필요가 없어
 				String i_category = resultset.getString("I_CATEGORY");
 				int i_hits = resultset.getInt("i_hits");
-//				int pLike = resultset.getInt("pLike");// Like수없나요?
 				Date iw_regist = resultset.getDate("iw_regist");
-				// 이미지 출력을 위함
-//				i_content = imgcontent(i_content, i_image);
-				i_image = imgcontent(i_content, i_image);
-//				System.out.println(pContent);
+				i_content = content(i_content);
 				dto = new ContentItemdto(i_num, name, user_email, i_title, i_content, i_image, i_category, i_hits, iw_regist);
 			}
 
@@ -79,24 +74,14 @@ public class ContentItemdao {
 		}
 		return dto;
 	}
+	
+	// 글 출력을 위함
+	public String content(String content) {
 
-	// 이미치 출력을 위함
-	public String imgcontent(String content, String img) {
-
-		String[] arr_img = img.split(",");
-		// ,으로 구분하기, 필요없을거같아 배열 여러개 출력하고싶을때ㅜㅜㅜ
-		// 오늘 소개할 물건은\n<img_id=macBook.png>\n<img_id=macBook2.png>\n입니다.
-		// 오늘 소개할 물건은\n<img_src=\"http://localhost:8080/DeveloperWeb/img/macBook.png>\n<img_id=macBook2.png\">\n입니다.
-		// 변경해준다
-//		content = content.replaceAll("img_id=", "img src=\"http://localhost:8080/DeveloperWeb/img/");
-//		content = content.replaceAll("png", "png\"");
-//		content = content.replaceAll("jpg", "jpg\"");
-		img = "<img src=\"http://localhost:8080/project_JSP/img/"+img;
-		img = img.replaceAll("png", "png\">");
-		img = img.replaceAll("jpg", "jpg\">");
-		return img;
+		content = content.replaceAll("\n", "<br>");
+		return content;
 	}
-
+	
 	// 게시물 삭제!!
 	public String contentDelete(String stri_num) {
 		String result = "false";

@@ -49,7 +49,7 @@ public class ContentNoticedao {
 				String n_content = resultset.getString("n_content");
 				int n_hits = resultset.getInt("n_hits");
 				Date nw_regist = resultset.getDate("nw_regist");
-				// 이미지 출력을 위함
+				n_content = content(n_content);
 				dto = new ContentNoticedto(n_num, name, user_email, n_title, n_content, n_hits, nw_regist);
 
 			}
@@ -72,7 +72,12 @@ public class ContentNoticedao {
 		}
 		return dto;
 	}
+	// 글 출력을 위함
+	public String content(String content) {
 
+		content = content.replaceAll("\n", "<br>");
+		return content;
+	}
 	// 게시물 삭제!!
 	public String contentDelete(String strn_num) {
 		String result = "false";

@@ -44,4 +44,5 @@
     <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.dao.AdminUserdao"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.AdminuserSearchCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.filepath.FilePath"/>
 </qualifiedTypeNameHistroy>
