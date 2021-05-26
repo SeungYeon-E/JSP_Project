@@ -6,8 +6,11 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="T_CATEGORY"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="ContentViewItem_jsp"/>
+			<item value="NoticeInsertCommand"/>
+			<item value="MultipartRequest"/>
 			<item value="I_CATEGORY"/>
 			<item value="I_IMAGE"/>
 			<item value="I_CONTENT"/>
@@ -20,9 +23,6 @@
 			<item value="myEmail"/>
 			<item value="ServletContext"/>
 			<item value="t_image"/>
-			<item value="iImg"/>
-			<item value="Timestamp"/>
-			<item value="list"/>
 		</list>
 		<list key="replacehistory">
 			<item value="T_CATEGORY"/>

@@ -13,7 +13,6 @@
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.ContentItemDeleteCommand"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.CommentModifyCommand"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.dao.ContentItemdao"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="java.sql.Date"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.CommentDeleteCommand"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.CommentViewCommend"/>
@@ -36,13 +35,25 @@
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.NoticeCommentModifyCommand"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.NoticeCommentDeleteCommand"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.dao.ContentNoticedao"/>
-    <fullyQualifiedTypeName name="com.jspproject.bbs.command.AdminUserlistCommand"/>
-    <fullyQualifiedTypeName name="com.jspproject.bbs.command.AdminUserDeleteCommand"/>
-    <fullyQualifiedTypeName name="com.jspproject.bbs.command.AdminUserRecoverCommand"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.dto.AdminUserdto"/>
     <fullyQualifiedTypeName name="java.sql.Timestamp"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.dao.AdminUserdao"/>
-    <fullyQualifiedTypeName name="com.jspproject.bbs.command.AdminuserSearchCommand"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.filepath.FilePath"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.MultipartRequest"/>
+    <fullyQualifiedTypeName name="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.AdminUserlistCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.AdminUserDeleteCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.AdminUserRecoverCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.AdminuserSearchCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.TipInsertCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.TipContentCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.TipUpdateCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.ItemInfoInsertCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.ItemInfoContentCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.ItemInfoUpdateCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.NoticeInsertCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.NoticeContentCommand"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.command.NoticeUpdateCommand"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
 </qualifiedTypeNameHistroy>
