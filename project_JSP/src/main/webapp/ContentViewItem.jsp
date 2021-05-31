@@ -153,7 +153,7 @@ div {
 			<br />
 
 			<h6 class="m-2">
-				By <a href="content_view.do?user_email=${content_view.user_email }">${content_view.name }</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				By <a href="userProfile.do?">${content_view.name }</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Date <i>${content_view.iw_regist}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Views <i>${content_view.i_hits}</i>
 			</h6>

@@ -69,5 +69,5 @@
     	url = "jdbc:mysql://localhost:3306/eclipse?serverTimezone=Asia/Seoul&amp;characterEncoding=utf8&amp;useSSl=false"
     	
     />
-    <Resources allowLinking="true" />
+    <!-- <Resources allowLinking="true" /> -->
 </Context>

@@ -56,4 +56,5 @@
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.NoticeContentCommand"/>
     <fullyQualifiedTypeName name="com.jspproject.bbs.command.NoticeUpdateCommand"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
+    <fullyQualifiedTypeName name="com.jspproject.bbs.dao.ProfileDao"/>
 </qualifiedTypeNameHistroy>

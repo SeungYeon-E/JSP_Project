@@ -1,3 +1,4 @@
+<%@page import="com.jspproject.bbs.dto.ContentItemdto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -147,20 +148,21 @@ div {
 	<!-- 상세페이지 -->
 	<div class="container">
 		<br /> <br />
-		<form action="modify.do" method="post">
+		<form action="TipContentBoard.do" method="post">
 			<h3 class="m-2">
 				<b>${content_view.t_title}</b>
 			</h3>
 			<br />
 
 			<h6 class="m-2">
-				By <a href="content_view.do?user_email=${content_view.user_email }">${content_view.name }</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				
+				By <a href="userProfile.do?">${content_view.name }</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Date <i>${content_view.tw_regist}</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Views <i>${content_view.t_hits}</i>
 			</h6>
 			<div>
 				<input type="submit" value="수정" id="modifyContent" class="btn btn-primary pull-right">&nbsp;&nbsp;&nbsp;
-				<a href="list.do" class="btn btn-primary pull-right">목록</a>&nbsp;&nbsp;&nbsp;
+				<a href="list2.do" class="btn btn-primary pull-right">목록</a>&nbsp;&nbsp;&nbsp;
 				<button type="button" onclick="deleteContent()" id="deletecontent" value="${content_view.t_num}" class="btn btn-primary pull-right">삭제</button>
 			</div>
 			<hr />

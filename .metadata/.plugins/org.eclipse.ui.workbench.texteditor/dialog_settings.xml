@@ -6,23 +6,23 @@
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="profileOnlyIdea.do"/>
 		<list key="findhistory">
-			<item value="ContentViewItem_jsp"/>
-			<item value="NoticeInsertCommand"/>
-			<item value="MultipartRequest"/>
-			<item value="I_CATEGORY"/>
-			<item value="I_IMAGE"/>
-			<item value="I_CONTENT"/>
-			<item value="I_TITLE"/>
-			<item value="I_NUM"/>
-			<item value="Item"/>
-			<item value="T_IMAGE"/>
-			<item value="requestFilePath"/>
-			<item value="oldFilePath"/>
-			<item value="myEmail"/>
-			<item value="ServletContext"/>
-			<item value="t_image"/>
+			<item value="profileOnlyIdea.do"/>
+			<item value="profile"/>
+			<item value="pro"/>
+			<item value="pro\"/>
+			<item value="modify.do"/>
+			<item value="form"/>
+			<item value="TipUpdateBoard.do"/>
+			<item value="delete"/>
+			<item value="i_num"/>
+			<item value="iteminfo"/>
+			<item value="itemin"/>
+			<item value="item"/>
+			<item value="return"/>
+			<item value="list3"/>
+			<item value="Main.jsp"/>
 		</list>
 		<list key="replacehistory">
 			<item value="T_CATEGORY"/>
